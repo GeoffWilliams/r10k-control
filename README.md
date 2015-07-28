@@ -19,3 +19,12 @@ A basic R10K control repository including:
 6. `ln -s /root/r10k-control/site/roles /etc/puppetlabs/code/modules/roles`
 7. `ln -s /root/r10k-control/hieradata/common.yaml /etc/puppetlabs/code/environments/production/hieradata/common.yaml`
 8. `puppet apply /root/r10k-control/site/profiles/examples/puppet/r10k_bootstrap.pp`
+9. `rm /etc/puppetlabs/code/modules/profiles`
+10. `rm /etc/puppetlabs/code/modules/roles`
+
+## Optional steps
+* Remove any modules that were installed globally under `/etc/puppetlabs/code/modules` either manually or using the `puppet module` tool
+* Fork/clone the git repository to your corporate server, then update the common.yaml file to reference it.  Ensure git command is setup with working ssh authentication, proxies, etc
+
+
+
