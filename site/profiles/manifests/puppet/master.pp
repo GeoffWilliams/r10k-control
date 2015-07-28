@@ -1,4 +1,4 @@
-class profile::puppet::master (
+class profiles::puppet::master (
     $hiera_eyaml = true,
     $autosign = false,
 #    $deploy_pub_key = "",

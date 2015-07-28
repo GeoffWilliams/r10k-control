@@ -1,4 +1,4 @@
-class profile::puppet::r10k (
+class profiles::puppet::r10k (
   $remote = hiera("profiles::puppet::r10k::remote"),
   $environmentpath = $::profiles::puppet::params::environmentpath,
 ) inherits ::profile::puppet::params {
