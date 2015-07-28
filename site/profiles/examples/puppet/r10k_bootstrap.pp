@@ -8,4 +8,4 @@
 # * Must have hiera data installed pointing to r10k control repository at the
 # key `profiles::puppet::r10k::remote:` 
 class { "profiles::puppet::r10k":}
-exec { "/opt/puppetlabs/bin/r10k -pv environment deploy": }
+exec { "/opt/puppetlabs/bin/r10k -v deploy environment": }

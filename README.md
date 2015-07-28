@@ -17,4 +17,5 @@ A basic R10K control repository including:
 4. `git clone https://github.com/GeoffWilliams/r10k-control`
 5. `ln -s /root/r10k-control/site/profiles /etc/puppetlabs/code/modules/profiles`
 6. `ln -s /root/r10k-control/site/roles /etc/puppetlabs/code/modules/roles`
+7. `ln -s /root/r10k-control/hieradata/common.yaml /etc/puppetlabs/code/environments/production/hieradata/common.yaml`
 8. `puppet apply /root/r10k-control/site/profiles/examples/puppet/r10k_bootstrap.pp`
