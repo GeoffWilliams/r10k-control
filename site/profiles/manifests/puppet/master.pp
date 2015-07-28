@@ -1,0 +1,36 @@
+class profile::puppet::master (
+    $hiera_eyaml = true,
+    $autosign = false,
+#    $deploy_pub_key = "",
+#    $deploy_private_key = "",
+#    $environmentpath = $::profile::puppet::params::environmentpath,
+) inherits profile::puppet::params {
+  validate_bool($hiera_eyaml,$autosign)
+
+  File {
+    owner => 'root',
+    group => 'root',
+  }
+
+  class { 'hiera':
+    hierarchy => [
+      'nodes/%{clientcert}',
+      'app_tier/%{app_tier}',
+      'env/%{environment}',
+      'common',
+    ],
+    datadir   => $profile::puppet::params::hieradir,
+    backends  => $backends,
+    eyaml     => $hiera_eyaml,
+    notify    => Service['pe-puppetserver'],
+  }
+
+  if $autosign {
+    file { 'autosign':
+      ensure  => 'present',
+      content => '*',
+      path    => "${::settings::confdir}/autosign.conf",
+    }
+  }
+
+}
