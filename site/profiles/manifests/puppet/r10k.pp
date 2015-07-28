@@ -1,6 +1,6 @@
 class profile::puppet::r10k (
-  $remote = $::profile::puppet::params::remote,
-  $environmentpath = $::profile::puppet::params::environmentpath,
+  $remote = hiera("profiles::puppet::r10k::remote"),
+  $environmentpath = $::profiles::puppet::params::environmentpath,
 ) inherits ::profile::puppet::params {
   file { 'r10k_config':
     ensure  => file,

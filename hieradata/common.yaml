@@ -1,2 +1,4 @@
 ---
 # common.yaml
+profiles::puppet::r10k::remote: "https://github.com/GeoffWilliams/r10k-control"
+
