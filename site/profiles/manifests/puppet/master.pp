@@ -4,7 +4,7 @@ class profiles::puppet::master (
 #    $deploy_pub_key = "",
 #    $deploy_private_key = "",
 #    $environmentpath = $::profile::puppet::params::environmentpath,
-) inherits profile::puppet::params {
+) inherits profiles::puppet::params {
   validate_bool($hiera_eyaml,$autosign)
 
   File {
@@ -19,7 +19,7 @@ class profiles::puppet::master (
       'env/%{environment}',
       'common',
     ],
-    datadir   => $profile::puppet::params::hieradir,
+    datadir   => $profiles::puppet::params::hieradir,
     backends  => $backends,
     eyaml     => $hiera_eyaml,
     notify    => Service['pe-puppetserver'],
