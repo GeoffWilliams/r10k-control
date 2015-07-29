@@ -23,6 +23,7 @@ class profiles::puppet::master (
     backends  => $backends,
     eyaml     => $hiera_eyaml,
     owner     => "pe-puppet",
+    group     => "pe-puppet",
     notify    => Service["pe-puppetserver"],
   }
 
