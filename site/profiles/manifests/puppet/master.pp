@@ -8,27 +8,28 @@ class profiles::puppet::master (
   validate_bool($hiera_eyaml,$autosign)
 
   File {
-    owner => 'root',
-    group => 'root',
+    owner => "root",
+    group => "root",
   }
 
-  class { 'hiera':
+  class { "hiera":
     hierarchy => [
-      'nodes/%{clientcert}',
-      'app_tier/%{app_tier}',
-      'env/%{environment}',
-      'common',
+      "nodes/%{clientcert}",
+      "app_tier/%{app_tier}",
+      "env/%{environment}",
+      "common",
     ],
     datadir   => $profiles::puppet::params::hieradir,
     backends  => $backends,
     eyaml     => $hiera_eyaml,
-    notify    => Service['pe-puppetserver'],
+    owner     => "pe-puppet",
+    notify    => Service["pe-puppetserver"],
   }
 
   if $autosign {
-    file { 'autosign':
-      ensure  => 'present',
-      content => '*',
+    file { "autosign":
+      ensure  => "present",
+      content => "*",
       path    => "${::settings::confdir}/autosign.conf",
     }
   }
