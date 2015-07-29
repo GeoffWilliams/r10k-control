@@ -43,6 +43,12 @@ _or_
 * Remove any modules that were installed globally under `/etc/puppetlabs/code/modules` either manually or using the `puppet module` tool
 * Fork/clone the git repository to your corporate server, then update the common.yaml file to reference it.  Ensure git command is setup with working ssh authentication, proxies, etc
 
+## Proxy support
+To enable git to support proxy servers, populate the `profiles::puppet::r10k::proxy` key in hiera, eg: 
+```
+profiles::puppet::r10k::proxy: "http://proxy.mycompany.com:8080"
+```
+
 # Post-install
 Once r10k has been run once, you should classify your master with `roles::puppet::master` and run puppet to ensure the hiera hierarchy is configured correctly, along with `hiera-eyaml`.
 
