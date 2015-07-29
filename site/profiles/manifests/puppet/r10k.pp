@@ -1,7 +1,7 @@
 class profiles::puppet::r10k (
-  $remote = hiera("profiles::puppet::r10k::remote"),
+  $remote          = hiera("profiles::puppet::r10k::remote"),
   $environmentpath = $::profiles::puppet::params::environmentpath,
-  $proxy = hiera("profiles::puppet::r10k::proxy", false),
+  $proxy           = hiera("profiles::puppet::r10k::proxy", false),
   $git_config_file = $::profiles::puppet::params::git_config_file,
 ) inherits ::profiles::puppet::params {
 
@@ -9,8 +9,8 @@ class profiles::puppet::r10k (
     fail("You must define profiles::puppet::r10k::remote in hiera or pass $remote to class profiles::puppet:r10k")
   }
   validate_absolute_path($git_config_file)
-
-
+  validate_absolute_path($environmentpath)
+ 
   File {
     owner   => "root",
     group   => 0,
