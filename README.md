@@ -22,7 +22,7 @@ _or_
 1. `git clone https://github.com/GeoffWilliams/r10k-control`
 1. `ln -s /root/r10k-control/site/profiles /etc/puppetlabs/code/modules/profiles`
 1. `ln -s /root/r10k-control/site/roles /etc/puppetlabs/code/modules/roles`
-1. `ln -s /root/r10k-control/hieradata/common.yaml /etc/puppetlabs/code/environments/production/hieradata/common.yaml`
+1. `cp /root/r10k-control/hieradata/common.yaml /etc/puppetlabs/code/environments/production/hieradata/common.yaml`
 1. `puppet apply /root/r10k-control/site/profiles/examples/puppet/r10k_bootstrap.pp`
 1. `rm /etc/puppetlabs/code/modules/profiles`
 1. `rm /etc/puppetlabs/code/modules/roles`
@@ -36,7 +36,7 @@ _or_
 1. `ln -s /root/r10k-control/site/profiles /etc/puppetlabs/puppet/modules/profiles`
 1. `ln -s /root/r10k-control/site/roles /etc/puppetlabs/puppet/modules/roles`
 1. `mkdir /var/lib/hiera -p`
-1. `ln -s /root/r10k-control/hieradata/common.yaml /var/lib/hiera/defaults.yaml`
+1. `cp /root/r10k-control/hieradata/common.yaml /var/lib/hiera/defaults.yaml`
 9. `puppet apply /root/r10k-control/site/profiles/examples/puppet/r10k_bootstrap.pp`
 1. `rm /etc/puppetlabs/puppet/modules/profiles`
 1. `rm /etc/puppetlabs/puppet/modules/roles`
