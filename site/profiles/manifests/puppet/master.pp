@@ -24,6 +24,7 @@ class profiles::puppet::master (
     eyaml     => $hiera_eyaml,
     owner     => "pe-puppet",
     group     => "pe-puppet",
+    provider  => "pe_puppetserver_gem",
     notify    => Service["pe-puppetserver"],
   }
 
