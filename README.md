@@ -14,7 +14,18 @@ _or_
 
 # How to use 
 
-## Puppet Enterprise 2015.2.x
+## Automatic installation on Puppet Enterprise 2015.x and 3.8.x
+1. Install Puppet Enterprise on master
+1. Checkout this git repository somewhere (or fork it)
+1. Run the script `./bootstrap.sh`
+
+
+## Installer-native installation
+If you wish to install in one hit using the `puppet-enterprise-installer` script by pointing at a control repository, you need only fork this repository and prepare an answers file with the entry `XXXXXX` pointing to your newly forked repository.
+
+## Manual installation
+
+### Puppet Enterprise 2015.2.x
 1. Install Puppet Enterprise on master
 1. `puppet module install --basemodulepath /etc/puppetlabs/code/modules/ zack-r10k`
 1. `puppet module install --basemodulepath /etc/puppetlabs/code/modules/ puppetlabs-stdlib`
@@ -27,7 +38,7 @@ _or_
 1. `rm /etc/puppetlabs/code/modules/profiles`
 1. `rm /etc/puppetlabs/code/modules/roles`
 
-## Puppet Enterprise 3.8.x
+### Puppet Enterprise 3.8.x
 1. Install Puppet Enterprise on master
 1. `puppet module install --basemodulepath /etc/puppetlabs/puppet/modules/ zack-r10k`
 1. `puppet module install --basemodulepath /etc/puppetlabs/puppet/modules/ puppetlabs-stdlib`
@@ -56,3 +67,4 @@ Once r10k has been run once, you should classify your master with `roles::puppet
 
 You can then start adding roles and profiles to your own forked repository and classify agent nodes with them.
 
+The `support_modules` directory may be removed after a successful installation although you may want to keep it around incase you ever need to run the bootstrap script in the future
