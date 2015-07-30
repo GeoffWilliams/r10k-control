@@ -21,7 +21,7 @@ _or_
 
 
 ## Installer-native installation
-If you wish to install in one hit using the `puppet-enterprise-installer` script by pointing at a control repository, you need only fork this repository and prepare an answers file with the entry `XXXXXX` pointing to your newly forked repository.
+If you wish to install in one hit using the `puppet-enterprise-installer` script by pointing at a control repository, you need only fork this repository and prepare an answers file with the entry `q_puppetmaster_r10k_remote` (and optionally `q_puppetmaster_r10k_private_key`) pointing to your newly forked repository.
 
 ## Manual installation
 
