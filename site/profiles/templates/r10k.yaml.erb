@@ -2,3 +2,7 @@ sources:
   mysource:
     remote: <%= @remote %>
     basedir: <%= @environmentpath %>
+<% if @proxy -%>
+forge:
+  proxy: '<%= @proxy%>'
+<% end -%>
