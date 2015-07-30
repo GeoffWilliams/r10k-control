@@ -3,6 +3,7 @@ class profiles::puppet::r10k (
   $environmentpath = $::profiles::puppet::params::environmentpath,
   $proxy           = hiera("profiles::puppet::r10k::proxy", false),
   $git_config_file = $::profiles::puppet::params::git_config_file,
+  $puppetconf      = $::profiles::puppet::params::puppetconf,
 ) inherits ::profiles::puppet::params {
 
   if $remote == undef {
@@ -24,7 +25,12 @@ class profiles::puppet::r10k (
   }
 
   if $proxy {
-    # The following will allow r10k to use Puppetfile via the proxy
+    $regexp = 'https?://(.*?@)?([^:]+):(\d+)'
+    $proxy_host = regsubst($proxy, $regexp, '\2')
+    $proxy_port = regsubst($proxy, $regexp, '\3')
+
+
+    # git/proxy support
     file { $git_config_file:
       ensure => file,
       mode   => "0600",
@@ -32,18 +38,35 @@ class profiles::puppet::r10k (
 
     Ini_setting {
       ensure  => present,
-      path    => $git_config_file,
-      value   => $proxy,
     }
 
     ini_setting { 'git http proxy setting':
       section => 'http',
       setting => 'proxy',
+      path    => $git_config_file,
+      value   => $proxy,
     }
 
     ini_setting { 'git https proxy setting':
       section => 'https',
       setting => 'proxy',
+      path    => $git_config_file,
+      value   => $proxy,
+    }
+
+    # PMT (puppet.conf)
+    ini_setting { "pmt proxy host":
+      path     => $puppetconf,
+      section  => "user",
+      setting  => "http_proxy_host",
+      value    => $proxy_host,
+    }
+
+    ini_setting { "pmt proxy port":
+      path    => $puppetconf,
+      section => "user",
+      setting => "http_proxy_port",
+      value   => $proxy_port,
     }
   }
 }

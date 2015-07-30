@@ -11,5 +11,5 @@ class profiles::puppet::params {
   $basemodulepath = "${::settings::confdir}/modules:/opt/puppetlabs/puppet/modules"
   $environmentpath = "${_codedir}/environments"
   $git_config_file = "/root/.gitconfig"
-
+  $puppetconf = "/etc/puppetlabs/puppet/puppet.conf"
 }
