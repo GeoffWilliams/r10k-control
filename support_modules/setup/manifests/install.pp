@@ -17,25 +17,25 @@ class setup::install {
   }
 
   include setup::params
-  $codedir   = $setup::codedir
-  $hieradir  = $setup::hieradir
-  $hierafile = $setup::hierafile
-  $moddir    = $setup::moddir
+  $codedir   = $setup::params::codedir
+  $hieradir  = $setup::params::hieradir
+  $hierafile = $setup::params::hierafile
+  $moddir    = $setup::params::moddir
   $pwd = pwd()
 
-  file { "${pwd}/site/profiles":
+  file { "${moddir}/profiles":
     ensure => link,
-    target => "${moddir}/profiles",
+    target => "${pwd}/site/profiles",
   }
 
-  file { "${pwd}/site/roles": 
+  file { "${moddir}/roles": 
     ensure => link,
-    target => "${moddir}/roles",
+    target => "${pwd}/site/roles",
   }
 
-  file { $hiera_defaults_file:
+  file { "${pwd}/hieradata/common.yaml":
     ensure => file,
-    source => "${pwd}/hieradata/common.yaml",
+    source => $hierafile,
   }
 
   # Initial R10K run

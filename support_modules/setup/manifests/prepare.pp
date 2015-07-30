@@ -11,10 +11,10 @@ class setup::prepare {
     ]
   }
 
-  $codedir   = $setup::codedir
-  $hieradir  = $setup::hieradir
-  $hierafile = $setup::hierafile
-  $moddir    = $setup::moddir
+  $codedir   = $setup::params::codedir
+  $hieradir  = $setup::params::hieradir
+  $hierafile = $setup::params::hierafile
+  $moddir    = $setup::params::moddir
   $pmi       = "puppet module install --basemodulepath ${moddir}"
 
   # Install modules needed for r10k
