@@ -33,6 +33,10 @@ class setup::install {
     target => "${pwd}/site/roles",
   }
 
+  file { $hieradir:
+    ensure => directory
+  }
+
   file { $hierafile:
     ensure => file,
     source => "${pwd}/hieradata/common.yaml",
