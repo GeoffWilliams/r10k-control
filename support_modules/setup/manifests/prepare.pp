@@ -15,7 +15,8 @@ class setup::prepare {
   $hieradir  = $setup::params::hieradir
   $hierafile = $setup::params::hierafile
   $moddir    = $setup::params::moddir
-  $pmi       = "puppet module install --basemodulepath ${moddir}"
+  $pmiflag   = $setup::params::pmiflag
+  $pmi       = "puppet module install ${pmiflag} ${moddir}"
 
   # Install modules needed for r10k
   exec { "${pmi} zack-r10k":}

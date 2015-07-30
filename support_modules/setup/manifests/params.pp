@@ -8,12 +8,14 @@ class setup::params {
       $codedir   = $::settings::codedir
       $hieradir  = "${::settings::codedir}/environments/production/hieradata/"
       $hierafile = "${hieradir}/common.yaml" 
+      $pmiflag   = "--modulepath"
     }
     default: {
       # Puppet Enterprise 3.8x
       $codedir   = $::settings::confdir
       $hieradir  = "/var/lib/hiera"
       $hierafile = "${hieradir}/defaults.yaml"
+      $pmiflag   = "--basemodulepath"
     }
   }
   $moddir = "${codedir}/modules"
