@@ -1,4 +1,5 @@
 #!/bin/bash
+PATH="/opt/puppetlabs/puppet/bin:/opt/puppet/bin:$PATH"
 PUPPET_APPLY="puppet apply --modulepath=$(pwd)/support_modules:$(puppet config print basemodulepath) -e "
 echo $PUPPET_APPLY
 $PUPPET_APPLY "include setup::prepare"
