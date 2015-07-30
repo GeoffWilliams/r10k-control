@@ -33,9 +33,9 @@ class setup::install {
     target => "${pwd}/site/roles",
   }
 
-  file { "${pwd}/hieradata/common.yaml":
+  file { $hierafile:
     ensure => file,
-    source => $hierafile,
+    source => "${pwd}/hieradata/common.yaml",
   }
 
   # Initial R10K run
