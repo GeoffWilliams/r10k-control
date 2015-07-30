@@ -6,4 +6,4 @@ mod "puppetlabs/ntp"
 mod "puppetlabs/inifile"
 mod "hiera",
   :git => "https://github.com/GeoffWilliams/puppet-hiera",
-  :ref => "provider_fix"
+  :ref => "double_gem"
