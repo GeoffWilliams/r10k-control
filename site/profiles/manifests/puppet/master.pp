@@ -77,7 +77,7 @@ class profiles::puppet::master (
 
   file_line { "puppet agent proxy":
     ensure => $proxy_ensure,
-    path   => $sysconf_puppet,,
+    path   => $sysconf_puppet,
     line   => $proxy_bash,    
   }
 }
