@@ -1,7 +1,7 @@
 class profiles::puppet::r10k (
   $remote          = hiera("profiles::puppet::r10k::remote"),
   $environmentpath = $::profiles::puppet::params::environmentpath,
-  $proxy           = $::profiles::puppet::master::proxy,
+  $proxy           = hiera("profiles::puppet::master::proxy", false),
   $git_config_file = $::profiles::puppet::params::git_config_file,
   $puppetconf      = $::profiles::puppet::params::puppetconf,
 ) inherits ::profiles::puppet::params {
