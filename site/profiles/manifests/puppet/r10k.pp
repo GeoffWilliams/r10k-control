@@ -1,7 +1,7 @@
 class profiles::puppet::r10k (
   $remote          = hiera("profiles::puppet::r10k::remote"),
   $environmentpath = $::profiles::puppet::params::environmentpath,
-  $proxy           = hiera("profiles::puppet::r10k::proxy", false),
+  $proxy           = $::profiles::puppet::proxy,
   $git_config_file = $::profiles::puppet::params::git_config_file,
   $puppetconf      = $::profiles::puppet::params::puppetconf,
 ) inherits ::profiles::puppet::params {
@@ -28,45 +28,34 @@ class profiles::puppet::r10k (
     $regexp = 'https?://(.*?@)?([^:]+):(\d+)'
     $proxy_host = regsubst($proxy, $regexp, '\2')
     $proxy_port = regsubst($proxy, $regexp, '\3')
+  }
 
+  $proxy_ensure = $proxy ? {
+    /.*/    => present,
+    default => absent,
+  }
 
-    # git/proxy support
-    file { $git_config_file:
-      ensure => file,
-      mode   => "0600",
-    }
+  # git/proxy support (see also r10k.yaml)
+  file { $git_config_file:
+    ensure => file,
+    mode   => "0600",
+  }
 
-    Ini_setting {
-      ensure  => present,
-    }
+  Ini_setting {
+    ensure  => $proxy_ensure,
+  }
 
-    ini_setting { 'git http proxy setting':
-      section => 'http',
-      setting => 'proxy',
-      path    => $git_config_file,
-      value   => $proxy,
-    }
+  ini_setting { 'git http proxy setting':
+    section => 'http',
+    setting => 'proxy',
+    path    => $git_config_file,
+    value   => $proxy,
+  }
 
-    ini_setting { 'git https proxy setting':
-      section => 'https',
-      setting => 'proxy',
-      path    => $git_config_file,
-      value   => $proxy,
-    }
-
-    # PMT (puppet.conf)
-    ini_setting { "pmt proxy host":
-      path     => $puppetconf,
-      section  => "user",
-      setting  => "http_proxy_host",
-      value    => $proxy_host,
-    }
-
-    ini_setting { "pmt proxy port":
-      path    => $puppetconf,
-      section => "user",
-      setting => "http_proxy_port",
-      value   => $proxy_port,
-    }
+  ini_setting { 'git https proxy setting':
+    section => 'https',
+    setting => 'proxy',
+    path    => $git_config_file,
+    value   => $proxy,
   }
 }

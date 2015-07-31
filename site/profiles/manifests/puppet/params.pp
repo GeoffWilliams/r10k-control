@@ -12,4 +12,13 @@ class profiles::puppet::params {
   $environmentpath = "${_codedir}/environments"
   $git_config_file = "/root/.gitconfig"
   $puppetconf = "/etc/puppetlabs/puppet/puppet.conf"
+  
+  if $is_pe {
+    $sysconf_puppet = "/etc/sysconfig/pe-puppet"
+  } else {
+    $sysconf_puppet = "/etc/sysconfig/puppet"
+  }
+
+  $sysconf_puppetserver = "/etc/sysconfig/pe-puppetserver"
+
 }
