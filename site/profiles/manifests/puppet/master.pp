@@ -52,6 +52,11 @@ class profiles::puppet::master (
   #
   # Proxy server monkey patching
   #
+  if $proxy {
+    $regexp = 'https?://(.*?@)?([^:]+):(\d+)'
+    $proxy_host = regsubst($proxy, $regexp, '\2')
+    $proxy_port = regsubst($proxy, $regexp, '\3')
+  }
   $proxy_ensure = $proxy ? {
     /.*/    => present,
     default => absent,
