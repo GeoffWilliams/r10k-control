@@ -40,6 +40,15 @@ class profiles::puppet::master (
     }
   }
 
+  # puppet service force startup on 2015.2.0
+  if $pe_server_version == "2015.2.0" {
+    service { "puppet":
+      ensure => running,
+      enable => true,
+    }
+  }
+
+
   #
   # Proxy server monkey patching
   #
