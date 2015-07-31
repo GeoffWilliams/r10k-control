@@ -2,11 +2,11 @@ class profiles::puppet::master (
     $hiera_eyaml = true,
     $autosign = false,
     $proxy = hiera("profiles::puppet::proxy", false),
-    $sysconf_puppet = $::profile::puppet::params::sysconf_puppet,
-    $sysconf_puppetserver = $::profile::puppet::params::sysconf_puppetserver,
+    $sysconf_puppet = $::profiles::puppet::params::sysconf_puppet,
+    $sysconf_puppetserver = $::profiles::puppet::params::sysconf_puppetserver,
 #    $deploy_pub_key = "",
 #    $deploy_private_key = "",
-#    $environmentpath = $::profile::puppet::params::environmentpath,
+#    $environmentpath = $::profiles::puppet::params::environmentpath,
 ) inherits profiles::puppet::params {
   validate_bool($hiera_eyaml,$autosign)
 
