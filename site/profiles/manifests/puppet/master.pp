@@ -4,6 +4,7 @@ class profiles::puppet::master (
     $proxy = hiera("profiles::puppet::master::proxy", false),
     $sysconf_puppet = $::profiles::puppet::params::sysconf_puppet,
     $sysconf_puppetserver = $::profiles::puppet::params::sysconf_puppetserver,
+    $puppet_agent_service = $::profiles::puppet::params::puppet_agent_service,
 #    $deploy_pub_key = "",
 #    $deploy_private_key = "",
 #    $environmentpath = $::profiles::puppet::params::environmentpath,
@@ -73,11 +74,13 @@ class profiles::puppet::master (
     ensure => $proxy_ensure,
     path   => $sysconf_puppetserver,
     line   => $proxy_bash,    
+    notify => Service["pe-puppetserver"],
   }
 
   file_line { "puppet agent proxy":
     ensure => $proxy_ensure,
     path   => $sysconf_puppet,
-    line   => $proxy_bash,    
+    line   => $proxy_bash,
+    notify => Service[$puppet_agent_service]
   }
 }

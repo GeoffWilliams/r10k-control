@@ -13,10 +13,13 @@ class profiles::puppet::params {
   $git_config_file = "/root/.gitconfig"
   $puppetconf = "/etc/puppetlabs/puppet/puppet.conf"
   
-  if $is_pe {
-    $sysconf_puppet = "/etc/sysconfig/pe-puppet"
-  } else {
+  if $pe_server_version {
+    # PE 2015
     $sysconf_puppet = "/etc/sysconfig/puppet"
+    $puppet_agent_service = "puppet"
+  } else {
+    $sysconf_puppet = "/etc/sysconfig/pe-puppet"
+    $puppet_agent_servce = "pe-puppet"
   }
 
   $sysconf_puppetserver = "/etc/sysconfig/pe-puppetserver"
