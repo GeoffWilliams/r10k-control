@@ -1,7 +1,7 @@
 class profiles::puppet::master (
     $hiera_eyaml = true,
     $autosign = false,
-    $proxy = hiera("profiles::puppet::proxy", false),
+    $proxy = hiera("profiles::puppet::master::proxy", false),
     $sysconf_puppet = $::profiles::puppet::params::sysconf_puppet,
     $sysconf_puppetserver = $::profiles::puppet::params::sysconf_puppetserver,
 #    $deploy_pub_key = "",
