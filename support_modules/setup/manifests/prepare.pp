@@ -21,6 +21,5 @@ class setup::prepare {
   # Install modules needed for r10k
   exec { "${pmi} zack-r10k":}
   exec { "${pmi} puppetlabs-stdlib":}
-  exec { "${pmi} geoffwilliams/coolstuff": }
 }
 
