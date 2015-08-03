@@ -62,7 +62,8 @@ class profiles::puppet::master (
     default => absent,
   }
 
-  $proxy_bash = "export http_proxy=${proxy} https_proxy=${proxy}"
+  $http_proxy_var = "http_proxy=${proxy}"
+  $https_proxy_var = "https_proxy=${proxy}"
 
   Ini_setting {
     ensure => $proxy_ensure,
@@ -84,17 +85,36 @@ class profiles::puppet::master (
   }
 
   # Enable pe-puppetserver to work with proxy
-  file_line { "pe-puppetserver proxy":
+  file_line { "pe-puppetserver http_proxy":
     ensure => $proxy_ensure,
     path   => $sysconf_puppetserver,
-    line   => $proxy_bash,    
-    notify => Service["pe-puppetserver"],
+    line   => $http_proxy_var,    
+    notify => [ Service["pe-puppetserver"],
+                Exec["systemctl_daemon_reload"] ],
   }
 
-  file_line { "puppet agent proxy":
+  file_line { "pe-puppetserver https_proxy":
+    ensure => $proxy_ensure,
+    path   => $sysconf_puppetserver,
+    line   => $http_proxy_var,
+    notify => [ Service["pe-puppetserver"],
+                Exec["systemctl_daemon_reload"] ],
+  }
+
+  file_line { "puppet agent http_proxy":
     ensure => $proxy_ensure,
     path   => $sysconf_puppet,
-    line   => $proxy_bash,
-    notify => Service[$puppet_agent_service]
+    line   => $https_proxy_var,
+    notify => [ Service[$puppet_agent_service],
+                Exec["systemctl_daemon_reload"] ],
   }
+
+  file_line { "puppet agent https_proxy":
+    ensure => $proxy_ensure,
+    path   => $sysconf_puppet,
+    line   => $https_proxy_var,
+    notify => [ Service[$puppet_agent_service],
+                Exec["systemctl_daemon_reload"] ],
+  }
+
 }
