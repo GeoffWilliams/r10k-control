@@ -121,4 +121,25 @@ class profiles::puppet::master (
                 Exec["systemctl_daemon_reload"] ],
   }
 
+  # patch the puppetserver gem command
+  if $pe_server_version == "2015.2.0" {
+    $file_to_patch = "/opt/puppetlabs/server/apps/puppetserver/cli/apps/gem"
+    $patch_pe_gem = true
+  } elsif $puppetversion =~ /3.8.* \(Puppet Enterprise/ {
+    $file_to_patch = "/opt/puppet/share/puppetserver/cli/apps/gem"
+    $patch_pe_gem = true
+  } else {
+    $patch_pe_gem = false
+  }
+  $line = "-Dhttps.proxyHost=${proxy_host} -Dhttp.proxyHost=${proxy_host} -Dhttp.proxyPort=${proxy_port} -Dhttps.proxyPort=${proxy_port} \\"
+
+  if $patch_pe_gem {
+    file_line { "gem http_proxy":
+      ensure => present,
+      path   => $file_to_patch,
+      match  => "^-Dhttps.proxyHost=",
+      after  => "puppet-server-release.jar",
+      line   => $line,
+    }
+  }
 }
