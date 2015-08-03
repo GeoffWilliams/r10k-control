@@ -1,3 +1,5 @@
 class profiles::base {
-  include ntp
+  class { "ntp":
+    disable_monitor => true,
+  }
 }
