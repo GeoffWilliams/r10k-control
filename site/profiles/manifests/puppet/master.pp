@@ -135,7 +135,7 @@ class profiles::puppet::master (
 
   if $patch_pe_gem {
     file_line { "gem http_proxy":
-      ensure => present,
+      ensure => $proxy_ensure,
       path   => $file_to_patch,
       match  => "^-Dhttps.proxyHost=",
       after  => "puppet-server-release.jar",
