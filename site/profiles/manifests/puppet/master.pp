@@ -88,7 +88,8 @@ class profiles::puppet::master (
   file_line { "pe-puppetserver http_proxy":
     ensure => $proxy_ensure,
     path   => $sysconf_puppetserver,
-    line   => $http_proxy_var,    
+    line   => $http_proxy_var,
+    match  => "^http_proxy=",    
     notify => [ Service["pe-puppetserver"],
                 Exec["systemctl_daemon_reload"] ],
   }
@@ -97,6 +98,7 @@ class profiles::puppet::master (
     ensure => $proxy_ensure,
     path   => $sysconf_puppetserver,
     line   => $http_proxy_var,
+    match  => "^https_proxy=",
     notify => [ Service["pe-puppetserver"],
                 Exec["systemctl_daemon_reload"] ],
   }
@@ -105,6 +107,7 @@ class profiles::puppet::master (
     ensure => $proxy_ensure,
     path   => $sysconf_puppet,
     line   => $https_proxy_var,
+    match  => "^http_proxy=",
     notify => [ Service[$puppet_agent_service],
                 Exec["systemctl_daemon_reload"] ],
   }
@@ -113,6 +116,7 @@ class profiles::puppet::master (
     ensure => $proxy_ensure,
     path   => $sysconf_puppet,
     line   => $https_proxy_var,
+    match  => "^https_proxy=",
     notify => [ Service[$puppet_agent_service],
                 Exec["systemctl_daemon_reload"] ],
   }
