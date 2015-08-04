@@ -15,9 +15,9 @@ class profiles::puppet::params {
 
   if $::osfamily == 'RedHat' {
     if $::operatingsystemrelease =~ /^7/ or $::operatingsystem == 'Fedora' {
-      $sysconf_prefix = "export "
-    } else {
       $sysconf_prefix = ""
+    } else {
+      $sysconf_prefix = "export "
     }
   } else {
     notify { "Warning: systemd detection doesn't support non-redhat os": }
