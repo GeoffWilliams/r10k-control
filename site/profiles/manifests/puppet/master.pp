@@ -52,6 +52,13 @@ class profiles::puppet::master (
       ensure => running,
       enable => true,
     }
+
+    file { $sysconf_puppetserver:
+      ensure => file,
+      owner  => "root",
+      group  => "root",
+      mode   => "0644",
+    }
   }
 
 
