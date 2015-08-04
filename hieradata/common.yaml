@@ -11,6 +11,16 @@ profiles::puppet::r10k::remote: "https://github.com/GeoffWilliams/r10k-control"
 profiles::puppet::master::proxy: "http://proxy.megacorp.com:8080"
 
 # Example of how to enable the mcollective R10K publisher
-#profiles::puppet::r10k::mco_plugin: true
-#profiles::puppet::r10k_mcollective_client::user_name: "git"
-#profiles::puppet::r10k_mcollective_client::user_home: "/home/git"
+
+# Install the MCO plugin when a master declares roles::puppet::master ?
+# profiles::puppet::r10k::mco_plugin: true
+
+# Grant mcollective client access to user
+# profiles::puppet::r10k_mcollective_client::user_name: "git"
+
+# Home directory for user allowed MCollective access
+# profiles::puppet::r10k_mcollective_client::user_home: "/home/git"
+
+# MCollective broker to publish client commands to.  In a monolithic puppet
+# installation this is the address of your puppet master.
+# profiles::puppet::r10k_mcollective_client::activemq_brokers: "pe-puppet.localdomain"
