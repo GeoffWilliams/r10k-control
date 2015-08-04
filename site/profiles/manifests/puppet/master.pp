@@ -40,9 +40,15 @@ class profiles::puppet::master (
     }
   }
 
-  # puppet service force startup on 2015.2.0
   if $pe_server_version == "2015.2.0" {
+    # PE-11353:  Allow referral to the puppet service
     service { "puppet":
+      ensure => running,
+      enable => true,
+    }
+  } else {
+    # Old puppet versions never had this defined... 
+    service { "pe-puppet":
       ensure => running,
       enable => true,
     }
