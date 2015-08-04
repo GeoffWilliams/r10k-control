@@ -62,8 +62,8 @@ class profiles::puppet::master (
     default => absent,
   }
 
-  $http_proxy_var = "http_proxy=${proxy}"
-  $https_proxy_var = "https_proxy=${proxy}"
+  $http_proxy_var = "${sysconf_prefix}http_proxy=${proxy}"
+  $https_proxy_var = "${sysconf_prefix}https_proxy=${proxy}"
 
   Ini_setting {
     ensure => $proxy_ensure,
@@ -89,7 +89,7 @@ class profiles::puppet::master (
     ensure => $proxy_ensure,
     path   => $sysconf_puppetserver,
     line   => $http_proxy_var,
-    match  => "^http_proxy=",    
+    match  => "^${sysconf_prefix}http_proxy=",    
     notify => [ Service["pe-puppetserver"],
                 Exec["systemctl_daemon_reload"] ],
   }
@@ -98,7 +98,7 @@ class profiles::puppet::master (
     ensure => $proxy_ensure,
     path   => $sysconf_puppetserver,
     line   => $https_proxy_var,
-    match  => "^https_proxy=",
+    match  => "^${sysconf_prefix}https_proxy=",
     notify => [ Service["pe-puppetserver"],
                 Exec["systemctl_daemon_reload"] ],
   }
@@ -107,7 +107,7 @@ class profiles::puppet::master (
     ensure => $proxy_ensure,
     path   => $sysconf_puppet,
     line   => $http_proxy_var,
-    match  => "^http_proxy=",
+    match  => "^${sysconf_prefix}http_proxy=",
     notify => [ Service[$puppet_agent_service],
                 Exec["systemctl_daemon_reload"] ],
   }
@@ -116,7 +116,7 @@ class profiles::puppet::master (
     ensure => $proxy_ensure,
     path   => $sysconf_puppet,
     line   => $https_proxy_var,
-    match  => "^https_proxy=",
+    match  => "^${sysconf_prefix}https_proxy=",
     notify => [ Service[$puppet_agent_service],
                 Exec["systemctl_daemon_reload"] ],
   }
@@ -129,6 +129,7 @@ class profiles::puppet::master (
     $file_to_patch = "/opt/puppet/share/puppetserver/cli/apps/gem"
     $patch_pe_gem = true
   } else {
+    notify { "this version of Puppet Enterprise might not need puppetserver gem to be patched, please check for a newer version of this module at https://github.com/GeoffWilliams/r10k-control/ and raise an issue if there isn't one": }
     $patch_pe_gem = false
   }
   $line = "-Dhttps.proxyHost=${proxy_host} -Dhttp.proxyHost=${proxy_host} -Dhttp.proxyPort=${proxy_port} -Dhttps.proxyPort=${proxy_port} \\"
