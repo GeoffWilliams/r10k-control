@@ -4,6 +4,7 @@ class profiles::puppet::r10k (
   $proxy           = hiera("profiles::puppet::master::proxy", false),
   $git_config_file = $::profiles::puppet::params::git_config_file,
   $puppetconf      = $::profiles::puppet::params::puppetconf,
+  $mco_plugin      = hiera("profiles::puppet::r10k::mco_plugin", false),
 ) inherits ::profiles::puppet::params {
 
   if $remote == undef {
@@ -57,5 +58,19 @@ class profiles::puppet::r10k (
     setting => 'proxy',
     path    => $git_config_file,
     value   => $proxy,
+  }
+
+  if $mco_plugin {
+
+    if $proxy {
+      $mco_proxy = $proxy
+    } else {
+      $mco_proxy = undef
+    }
+
+    # Generate a certificate for MCollective to allow the plugin to work and install it
+    class { '::r10k::mcollective':
+      http_proxy => $mco_proxy,
+    }
   }
 }

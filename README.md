@@ -57,9 +57,9 @@ If you wish to install in one hit using the `puppet-enterprise-installer` script
 * Fork/clone the git repository to your corporate server, then update the common.yaml file to reference it.  Ensure git command is setup with working ssh authentication, proxies, etc
 
 ## Proxy support
-To enable git to support proxy servers, populate the `profiles::puppet::r10k::proxy` key in hiera, eg: 
+To enable git to support proxy servers, populate the `profiles::puppet::master::proxy` key in hiera, eg: 
 ```
-profiles::puppet::r10k::proxy: "http://proxy.mycompany.com:8080"
+profiles::puppet::master::proxy: "http://proxy.mycompany.com:8080"
 ```
 
 # Post-install
