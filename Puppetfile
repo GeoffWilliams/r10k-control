@@ -4,6 +4,7 @@
 mod "puppetlabs/stdlib"
 mod "puppetlabs/ntp"
 mod "puppetlabs/inifile"
+mod "zack/r10k"
 mod "hiera",
   :git => "https://github.com/GeoffWilliams/puppet-hiera",
   :ref => "double_gem"
