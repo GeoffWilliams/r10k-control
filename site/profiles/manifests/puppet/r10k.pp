@@ -74,7 +74,7 @@ class profiles::puppet::r10k (
     }
 
     # Create MCO keypairs for all hosts declaring mcollective client
-    $keypairs
-    puppet_enterprise::master::keypair { $keypairs: }
+    #$keypairs
+    #puppet_enterprise::master::keypair { $keypairs: }
   }
 }
