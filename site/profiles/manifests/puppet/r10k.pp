@@ -5,6 +5,7 @@ class profiles::puppet::r10k (
   $git_config_file = $::profiles::puppet::params::git_config_file,
   $puppetconf      = $::profiles::puppet::params::puppetconf,
   $mco_plugin      = hiera("profiles::puppet::r10k::mco_plugin", false),
+  $mco_cert_names  = heira("profiles::puppet::r10k::mco_cert_names", false),
 ) inherits ::profiles::puppet::params {
 
   if $remote == undef {
@@ -74,7 +75,5 @@ class profiles::puppet::r10k (
     }
 
     # Create MCO keypairs for all hosts declaring mcollective client
-    #$keypairs
-    #puppet_enterprise::master::keypair { $keypairs: }
-  }
+    puppet_enterprise::master::keypair { $mco_cert_names: }
 }

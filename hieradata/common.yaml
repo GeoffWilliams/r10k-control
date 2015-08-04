@@ -26,3 +26,9 @@ profiles::puppet::master::proxy: "http://proxy.megacorp.com:8080"
 # an array).
 # profiles::puppet::r10k_mcollective_client::activemq_brokers: 
 #   - "pe-puppet.localdomain"
+#
+# Array of MCollective certificate names to generate on the master.  This needs
+# to match the name used on client which is $::fqdn__$user_name by default, eg:
+# "git01.megacorp.com.internal__git"
+# profiles::puppet::r10k::mco_cert_names:
+#   - "git01.megacorp.com.internal__git"

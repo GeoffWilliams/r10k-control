@@ -33,7 +33,7 @@ class profiles::puppet::r10k_mcollective_client(
   class { "::r10k::mcollective": }
 
   # MCO certifcates and client - export to master for collection
-  @@puppet_enterprise::mcollective::client { $user_name:
+  puppet_enterprise::mcollective::client { $user_name:
     activemq_brokers => $activemq_brokers,
     create_user      => false,
     cert_name        => $_cert_name,
@@ -41,7 +41,4 @@ class profiles::puppet::r10k_mcollective_client(
     logfile          => $_logfile,
   }
 
-  # Collect above resource and realize it
-  Puppet_enterprise::Mcollective::Client <<| cert_name == $_cert_name |>> 
-  
 }
