@@ -36,12 +36,12 @@ class profiles::puppet::r10k_mcollective_client(
   @@puppet_enterprise::mcollective::client { $user_name:
     activemq_brokers => $activemq_brokers,
     create_user      => false,
-    cert_name        => $cert_name,
+    cert_name        => $_cert_name,
     home_dir         => $user_home,
     logfile          => $_logfile,
   }
 
   # Collect above resource and realize it
-  Puppet_enterprise::Mcollective::Client <<| cert_name == $cert_name |>> 
+  Puppet_enterprise::Mcollective::Client <<| cert_name == $_cert_name |>> 
   
 }
