@@ -53,7 +53,7 @@ class profiles::puppet::master (
       enable => true,
     }
 
-    file { $sysconf_puppetserver:
+    file { [ $sysconf_puppet, $sysconf_puppetserver]:
       ensure => file,
       owner  => "root",
       group  => "root",
