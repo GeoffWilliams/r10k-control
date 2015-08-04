@@ -3,6 +3,7 @@ class profiles::puppet::r10k_mcollective_client(
     $user_home = hiera("profiles::puppet::r10k_mcollective_client::user_home"),
     $activemq_brokers = hiera("profiles::puppet::r10k_mcollective_client::activemq_brokers"),
     $logfile = false,
+    $cert_name = "${::fqdn}__${user_name}",
 ) {
   
   # If user supplies custom logdir use it and have user be responsible for
@@ -24,13 +25,16 @@ class profiles::puppet::r10k_mcollective_client(
   # r10k mco plugin
   class { "::r10k::mcollective": }
 
-  # MCO certifcates and client
-  puppet_enterprise::mcollective::client { $user_name:
+  # MCO certifcates and client - export to master for collection
+  @@puppet_enterprise::mcollective::client { $user_name:
     activemq_brokers => $activemq_brokers,
     create_user      => false,
-    cert_name        => "${::fqdn}__${user_name}",
+    cert_name        => $cert_name,
     home_dir         => $user_home,
     logfile          => $_logfile,
-  }   
+  }
+
+  # Collect above resource and realize it
+  Puppet_enterprise::Mcollective::Client <<| cert_name == $cert_name |>> 
   
 }
