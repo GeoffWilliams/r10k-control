@@ -22,5 +22,7 @@ profiles::puppet::master::proxy: "http://proxy.megacorp.com:8080"
 # profiles::puppet::r10k_mcollective_client::user_home: "/home/git"
 
 # MCollective broker to publish client commands to.  In a monolithic puppet
-# installation this is the address of your puppet master.
-# profiles::puppet::r10k_mcollective_client::activemq_brokers: "pe-puppet.localdomain"
+# installation this is the address of your puppet master (NOTE:  must be an
+# an array).
+# profiles::puppet::r10k_mcollective_client::activemq_brokers: 
+#   - "pe-puppet.localdomain"

@@ -9,7 +9,7 @@ class profiles::puppet::params {
     $_codedir = $::settings::codedir
   } else {
     $sysconf_puppet = "/etc/sysconfig/pe-puppet"
-    $puppet_agent_servce = "pe-puppet"
+    $puppet_agent_service = "pe-puppet"
     $_codedir = $::settings::confdir
   }
 
