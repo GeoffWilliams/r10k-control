@@ -33,7 +33,7 @@ class profiles::puppet::r10k_mcollective_client(
   class { "::r10k::mcollective": }
 
   # MCO certifcates and client - export to master for collection
-  puppet_enterprise::mcollective::client { $user_name:
+  puppet_enterprise::mcollective::client { $_cert_name:
     activemq_brokers => $activemq_brokers,
     create_user      => false,
     cert_name        => $_cert_name,
