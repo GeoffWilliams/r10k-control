@@ -20,6 +20,7 @@ class profiles::puppet::params {
       $sysconf_prefix = "export "
     } else {
       $sysconf_prefix = ""
+    }
   } else {
     notify { "Warning: systemd detection doesn't support non-redhat os": }
   }
