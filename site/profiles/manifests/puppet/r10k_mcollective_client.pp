@@ -28,6 +28,7 @@ class profiles::puppet::r10k_mcollective_client(
   puppet_enterprise::mcollective::client { $user_name:
     activemq_brokers => $activemq_brokers,
     create_user      => false,
+    cert_name        => "${::fqdn}__${user}",
     home_dir         => $user_home,
     logfile          => $_logfile,
   }   

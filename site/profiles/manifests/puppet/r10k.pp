@@ -72,5 +72,9 @@ class profiles::puppet::r10k (
     class { '::r10k::mcollective':
       http_proxy => $mco_proxy,
     }
+
+    # Create MCO keypairs for all hosts declaring mcollective client
+    $keypairs
+    puppet_enterprise::master::keypair { $keypairs: }
   }
 }
