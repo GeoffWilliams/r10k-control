@@ -4,15 +4,15 @@ class profiles::puppet::params {
 
   if $pe_server_version {
     # PE 2015
-    $sysconf_puppet = "/etc/sysconfig/puppet"
+    $sysconf_puppet       = "/etc/sysconfig/puppet"
     $puppet_agent_service = "puppet"
-    $_codedir = $::settings::codedir
-    $mco_service = "mcollective"
+    $_codedir             = $::settings::codedir
+    $mco_service          = "mcollective"
   } else {
-    $sysconf_puppet = "/etc/sysconfig/pe-puppet"
+    $sysconf_puppet       = "/etc/sysconfig/pe-puppet"
     $puppet_agent_service = "pe-puppet"
-    $_codedir = $::settings::confdir
-    $service  = "pe-mcollective"
+    $_codedir             = $::settings::confdir
+    $service              = "pe-mcollective"
   }
 
   if $::osfamily == 'RedHat' {
@@ -26,9 +26,9 @@ class profiles::puppet::params {
   }
 
   $sysconf_puppetserver = "/etc/sysconfig/pe-puppetserver"
-  $hieradir = "${_codedir}/environments/%{::environment}/hieradata"
-  $basemodulepath = "${::settings::confdir}/modules:/opt/puppetlabs/puppet/modules"
-  $environmentpath = "${_codedir}/environments"
-  $git_config_file = "/root/.gitconfig"
-  $puppetconf = "${::settings::confdir}/puppet.conf"
+  $hieradir             = "${_codedir}/environments/%{::environment}/hieradata"
+  $basemodulepath       = "${::settings::confdir}/modules:/opt/puppetlabs/puppet/modules"
+  $environmentpath      = "${_codedir}/environments"
+  $git_config_file      = "/root/.gitconfig"
+  $puppetconf           = "${::settings::confdir}/puppet.conf"
 }
