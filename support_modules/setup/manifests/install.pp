@@ -21,7 +21,7 @@ class setup::install {
   $hieradir  = $setup::params::hieradir
   $hierafile = $setup::params::hierafile
   $moddir    = $setup::params::moddir
-  $pwd = pwd()
+  $pwd       = pwd()
 
   file { "${moddir}/profiles":
     ensure => link,

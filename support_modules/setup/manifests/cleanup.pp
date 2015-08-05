@@ -5,6 +5,7 @@ class setup::cleanup {
   $hieradir  = $setup::params::hieradir
   $hierafile = $setup::params::hierafile
   $moddir    = $setup::params::moddir
+  $pwd       = pwd()
 
   # Script to get the git revision of the current environment.  Needs to be 
   # bootstrapped onto the system or puppet wont run at all
