@@ -25,10 +25,11 @@ class profiles::puppet::params {
     notify { "Warning: systemd detection doesn't support non-redhat os": }
   }
 
-  $sysconf_puppetserver = "/etc/sysconfig/pe-puppetserver"
-  $hieradir             = "${_codedir}/environments/%{::environment}/hieradata"
-  $basemodulepath       = "${::settings::confdir}/modules:/opt/puppetlabs/puppet/modules"
-  $environmentpath      = "${_codedir}/environments"
-  $git_config_file      = "/root/.gitconfig"
-  $puppetconf           = "${::settings::confdir}/puppet.conf"
+  $sysconf_puppetserver   = "/etc/sysconfig/pe-puppetserver"
+  $hieradir               = "${_codedir}/environments/%{::environment}/hieradata"
+  $basemodulepath         = "${::settings::confdir}/modules:/opt/puppetlabs/puppet/modules"
+  $environmentpath        = "${_codedir}/environments"
+  $git_config_file        = "/root/.gitconfig"
+  $puppetconf             = "${::settings::confdir}/puppet.conf"
+  $generate_r10k_mco_cert = true
 }
