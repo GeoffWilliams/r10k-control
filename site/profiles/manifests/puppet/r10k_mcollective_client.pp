@@ -10,6 +10,6 @@ class profiles::puppet::r10k_mcollective_client(
   # MCO certifcates and client
   mcollective_user::client { $user_name:
     activemq_brokers => $activemq_brokers,
-    user_home        => $user_home
+    local_user_dir   => $user_home
   }
 }
