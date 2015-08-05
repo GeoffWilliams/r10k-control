@@ -36,7 +36,7 @@ class profiles::puppet::r10k (
   $mco_plugin             = hiera("profiles::puppet::r10k::mco_plugin", false),
   $mco_user               = hiera("profiles::puppet::r10k::mco_user", false),
   $mco_service            = $::profiles::puppet::params::mco_service,
-  $generate_r10k_mco_cert = hiera("profiles::puppet::r10k::generate_mco_cert", $generate_r10k_mco_cert)
+  $generate_r10k_mco_cert = hiera("profiles::puppet::r10k::generate_mco_cert", $::generate_r10k_mco_cert)
 ) inherits ::profiles::puppet::params {
 
   if $remote == undef {
@@ -112,7 +112,7 @@ class profiles::puppet::r10k (
     # in some circumstances (eg mcollective agent in external collective, we
     # may want to generate the user by hand
     mcollective_user::register { $mco_user:
-      generate_cert => $generate_r10k_mco_cert,
+      generate_cert => $_generate_r10k_mco_cert,
     }
   }
 }
