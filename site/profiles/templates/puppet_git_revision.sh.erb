@@ -1,0 +1,15 @@
+#!/bin/bash
+#
+# Print the git revision of the passed in pupet environment.
+#
+# Usage:
+#   puppet_git_revision.sh ENVIRONMENT_NAME
+#
+# EG,
+#   puppet_git_revision.sh production
+PUPPET_ENVIRONMENT=$1
+if "$PUPPET_ENVIRONMENT" == "" ; then
+  echo "You must specify an environment to lookup"
+  exit 1
+fi
+git --git-dir <%=@environmentpath %>/$PUPPET_ENVIRONMENT/.git rev-parse HEAD

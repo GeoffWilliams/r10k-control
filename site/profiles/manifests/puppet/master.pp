@@ -61,6 +61,14 @@ class profiles::puppet::master (
     }
   }
 
+  # git revision in catalogue
+  file { "/usr/local/bin/puppet_git_revision.sh":
+    ensure  => file,
+    owner   => "root",
+    group   => "root",
+    mode    => "0755",
+    content => template("${module_name}/puppet_git_revision.sh.erb"),
+  }
 
   #
   # Proxy server monkey patching
