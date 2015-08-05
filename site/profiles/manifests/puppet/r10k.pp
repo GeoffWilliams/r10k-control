@@ -50,7 +50,7 @@ class profiles::puppet::r10k (
   } else {
     # careful... $create_r10k_mco_cert is true or false at this point, don't 
     # invert the logic of this if statement
-    $_generate_r10k_mc_cert = $generate_r10k_mco_cert
+    $_generate_r10k_mco_cert = $generate_r10k_mco_cert
   }
 
  
