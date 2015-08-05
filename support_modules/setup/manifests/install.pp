@@ -1,15 +1,5 @@
 # Symlink directories into the module path and run r10k
 class setup::install {
-  Exec {
-    path => [
-      "/opt/puppetlabs/bin",
-      "/opt/puppet/bin/",
-      "/usr/local/bin",
-      "/usr/bin",
-      "/bin",
-    ]
-  }
-
   File {
     owner => "root",
     group => "root",

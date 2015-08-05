@@ -7,9 +7,10 @@
 #
 # EG,
 #   puppet_git_revision.sh production
-PUPPET_ENVIRONMENT=$1
+PUPPET_ENVIRONMENT="$1"
 if "$PUPPET_ENVIRONMENT" == "" ; then
   echo "You must specify an environment to lookup"
   exit 1
 fi
-git --git-dir <%=@environmentpath %>/$PUPPET_ENVIRONMENT/.git rev-parse HEAD
+GIT_CMD=git --git-dir <%=@environmentpath %>/$PUPPET_ENVIRONMENT/.git rev-parse HEAD
+$GIT_CMD || echo "Error finding git revision for environment '$PUPPET_ENVIRONMENT' ($GIT_CMD)"

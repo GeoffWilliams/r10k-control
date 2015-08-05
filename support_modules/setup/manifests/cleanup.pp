@@ -7,6 +7,16 @@ class setup::cleanup {
   $moddir    = $setup::params::moddir
   $pwd       = pwd()
 
+  Exec {
+    path => [
+      "/opt/puppetlabs/bin",
+      "/opt/puppet/bin/",
+      "/usr/local/bin",
+      "/usr/bin",
+      "/bin",
+    ]
+  }
+
   # Script to get the git revision of the current environment.  Needs to be 
   # bootstrapped onto the system or puppet wont run at all
   file { "/usr/local/bin/puppet_git_revision.sh":
