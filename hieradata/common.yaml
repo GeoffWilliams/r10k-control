@@ -15,20 +15,18 @@ profiles::puppet::master::proxy: "http://proxy.megacorp.com:8080"
 # Install the MCO plugin when a master declares roles::puppet::master ?
 # profiles::puppet::r10k::mco_plugin: true
 
-# Grant mcollective client access to user
-# profiles::puppet::r10k_mcollective_client::user_name: "git"
+# Name of MCollective user to register.  Note that this refers to both the
+# real system user and the mcollective user.  This entry is referenced in:
+# *  site/profiles/manifests/puppet/r10k.pp
+# *  site/profiles/manifests/puppet/r10k_client.pp
+# profiles::puppet::r10k::mco_user: "git"
 
-# Home directory for user allowed MCollective access
-# profiles::puppet::r10k_mcollective_client::user_home: "/home/git"
+# Home directory for user allowed MCollective access.  Only needs to be 
+# specified if it isn't under /home/$username
+# profiles::puppet::r10k_mcollective_client::user_home: "/var/lib/git"
 
 # MCollective broker to publish client commands to.  In a monolithic puppet
 # installation this is the address of your puppet master (NOTE:  must be an
 # an array).
 # profiles::puppet::r10k_mcollective_client::activemq_brokers: 
 #   - "pe-puppet.localdomain"
-#
-# Array of MCollective certificate names to generate on the master.  This needs
-# to match the name used on client which is $::fqdn__$user_name by default, eg:
-# "git01.megacorp.com.internal__git"
-# profiles::puppet::r10k::mco_cert_names:
-#   - "git01.megacorp.com.internal__git"

@@ -8,3 +8,5 @@ mod "zack/r10k"
 mod "hiera",
   :git => "https://github.com/GeoffWilliams/puppet-hiera",
   :ref => "double_gem"
+mod "mcollective_user"
+  :git => "https://github.com/GeoffWilliams/geoffwilliams-mcollective_user"

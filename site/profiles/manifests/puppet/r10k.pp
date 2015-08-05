@@ -5,7 +5,7 @@ class profiles::puppet::r10k (
   $git_config_file = $::profiles::puppet::params::git_config_file,
   $puppetconf      = $::profiles::puppet::params::puppetconf,
   $mco_plugin      = hiera("profiles::puppet::r10k::mco_plugin", false),
-  $mco_cert_names  = heira("profiles::puppet::r10k::mco_cert_names", false),
+  $mco_user        = hiera("profiles::puppet::r10k::mco_user", false)
 ) inherits ::profiles::puppet::params {
 
   if $remote == undef {
@@ -68,13 +68,12 @@ class profiles::puppet::r10k (
     } else {
       $mco_proxy = undef
     }
-
-    # Generate a certificate for MCollective to allow the plugin to work and install it
+  
+    # setup r10k and configure proxy support
     class { '::r10k::mcollective':
       http_proxy => $mco_proxy,
     }
 
-    # Create MCO keypairs for all hosts declaring mcollective client
-    puppet_enterprise::master::keypair { $mco_cert_names: }
+    mcollective_user::register { $mco_user: }
   }
 }
