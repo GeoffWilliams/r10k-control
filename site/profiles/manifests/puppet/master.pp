@@ -7,7 +7,7 @@ class profiles::puppet::master (
     $puppet_agent_service = $::profiles::puppet::params::puppet_agent_service,
 #    $deploy_pub_key = "",
 #    $deploy_private_key = "",
-#    $environmentpath = $::profiles::puppet::params::environmentpath,
+    $environmentpath = $::profiles::puppet::params::environmentpath,
 ) inherits profiles::puppet::params {
   validate_bool($hiera_eyaml,$autosign)
 

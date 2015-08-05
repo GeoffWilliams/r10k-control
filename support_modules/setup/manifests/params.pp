@@ -16,6 +16,7 @@ class setup::params {
       $hierafile = "${hieradir}/defaults.yaml"
     }
   }
-  $moddir = "${codedir}/modules"
-  $pmiflag   = "--modulepath"
+  $moddir          = "${codedir}/modules"
+  $pmiflag         = "--modulepath"
+  $environmentpath = "${codedir}/environments/"
 }
