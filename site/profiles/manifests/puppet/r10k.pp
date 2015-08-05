@@ -5,7 +5,8 @@ class profiles::puppet::r10k (
   $git_config_file = $::profiles::puppet::params::git_config_file,
   $puppetconf      = $::profiles::puppet::params::puppetconf,
   $mco_plugin      = hiera("profiles::puppet::r10k::mco_plugin", false),
-  $mco_user        = hiera("profiles::puppet::r10k::mco_user", false)
+  $mco_user        = hiera("profiles::puppet::r10k::mco_user", false),
+  $mco_service     = $::profiles::puppet::params::mco_service,
 ) inherits ::profiles::puppet::params {
 
   if $remote == undef {
@@ -72,6 +73,7 @@ class profiles::puppet::r10k (
     # setup r10k and configure proxy support
     class { '::r10k::mcollective':
       http_proxy => $mco_proxy,
+      notify     => Service[$mco_service],
     }
 
     mcollective_user::register { $mco_user: }

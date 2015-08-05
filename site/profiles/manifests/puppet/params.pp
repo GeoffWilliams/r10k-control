@@ -7,10 +7,12 @@ class profiles::puppet::params {
     $sysconf_puppet = "/etc/sysconfig/puppet"
     $puppet_agent_service = "puppet"
     $_codedir = $::settings::codedir
+    $mco_service = "mcollective"
   } else {
     $sysconf_puppet = "/etc/sysconfig/pe-puppet"
     $puppet_agent_service = "pe-puppet"
     $_codedir = $::settings::confdir
+    $service  = "pe-mcollective"
   }
 
   if $::osfamily == 'RedHat' {
