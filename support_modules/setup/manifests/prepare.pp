@@ -18,8 +18,9 @@ class setup::prepare {
   $pmiflag   = $setup::params::pmiflag
   $pmi       = "puppet module install ${pmiflag} ${moddir}"
 
-  # Install modules needed for r10k
+  # Install modules needed for r10k and bootstrapping
   exec { "${pmi} zack-r10k":}
   exec { "${pmi} puppetlabs-stdlib":}
+  exec { "${pmi} geoffwilliams-dirtools":}
 }
 
