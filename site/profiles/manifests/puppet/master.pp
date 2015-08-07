@@ -16,6 +16,11 @@ class profiles::puppet::master (
     group => "root",
   }
 
+  $extra_config = "
+:eyaml:
+    :extension: 'yaml'
+"
+
   class { "hiera":
     hierarchy => [
       "nodes/%{clientcert}",
@@ -23,13 +28,14 @@ class profiles::puppet::master (
       "env/%{environment}",
       "common",
     ],
-    datadir   => $profiles::puppet::params::hieradir,
-    backends  => $backends,
-    eyaml     => $hiera_eyaml,
-    owner     => "pe-puppet",
-    group     => "pe-puppet",
-    provider  => "pe_puppetserver_gem",
-    notify    => Service["pe-puppetserver"],
+    datadir      => $profiles::puppet::params::hieradir,
+    backends     => $backends,
+    eyaml        => $hiera_eyaml,
+    owner        => "pe-puppet",
+    group        => "pe-puppet",
+    provider     => "pe_puppetserver_gem",
+    extra_config => $extra_config,
+    notify       => Service["pe-puppetserver"],
   }
 
   if $autosign {
