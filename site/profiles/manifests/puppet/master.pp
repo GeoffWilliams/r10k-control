@@ -16,11 +16,6 @@ class profiles::puppet::master (
     group => "root",
   }
 
-  $extra_config = "
-:eyaml:
-    :extension: 'yaml'
-"
-
   class { "hiera":
     hierarchy => [
       "nodes/%{clientcert}",
@@ -34,7 +29,7 @@ class profiles::puppet::master (
     owner        => "pe-puppet",
     group        => "pe-puppet",
     provider     => "pe_puppetserver_gem",
-    extra_config => $extra_config,
+    eyaml_extension => "yaml",
     notify       => Service["pe-puppetserver"],
   }
 
