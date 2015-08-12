@@ -43,7 +43,7 @@ class profiles::puppet::master (
     notify       => Service["pe-puppetserver"],
   }
 
-  include profiles::policy_based_autosign
+  include profiles::puppet::policy_based_autosign
 
   file { "autosign":
     ensure  => $autosign_ensure,
