@@ -22,7 +22,7 @@ class profiles::puppet::policy_based_autosign(
   file { $autosign_script:
     ensure  => $ensure,
     owner   => "root",
-    group   => "pe-puppetserver",
+    group   => "pe-puppet",
     mode    => "0770",
     content => template("${module_name}/autosign.sh.erb"),
   }
