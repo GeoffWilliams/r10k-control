@@ -1,0 +1,20 @@
+#!/bin/bash
+# define the shared secret we will accept to authenticate identity
+SHARED_SECRET="<%= @autosign_secret %>"
+
+# capture the certname (hostname) used for the request
+CERT_NAME=$1
+
+# feed STDIN (file descriptor 0) to the openssl command and pipe
+# the output to grep to get the sharedSecret supplied by the agent
+# capturing the value in a variable called AGENT_SECRET
+AGENT_SECRET=$(openssl req -noout -text <&0 | awk -F ":" '/challengePassword/ { gsub(/\n$/, "", $2) ; print $2 }')
+
+if [ "$AGENT_SECRET" == "$SHARED_SECRET" ] ; then
+    STATUS=0
+    echo "authorised agent: ${CERT_NAME}"
+else
+    STATUS=1
+    echo "***!ALERT!*** incorrect or missing shared secret from ${CERT_NAME}"
+fi
+exit $STATUS

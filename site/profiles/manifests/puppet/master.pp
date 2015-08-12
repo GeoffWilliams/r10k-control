@@ -1,15 +1,25 @@
 class profiles::puppet::master (
-    $hiera_eyaml = true,
-    $autosign = false,
-    $proxy = hiera("profiles::puppet::master::proxy", false),
-    $sysconf_puppet = $::profiles::puppet::params::sysconf_puppet,
-    $sysconf_puppetserver = $::profiles::puppet::params::sysconf_puppetserver,
-    $puppet_agent_service = $::profiles::puppet::params::puppet_agent_service,
-#    $deploy_pub_key = "",
-#    $deploy_private_key = "",
-    $environmentpath = $::profiles::puppet::params::environmentpath,
+    $hiera_eyaml                  = true,
+    $autosign_ensure              = absent,
+    $policy_based_autosign_ensure = hiera("profiles::puppet::master::policy_based_autosign_ensure", absent),
+    $autosign_script              = $profiles::puppet::params::autosign_script,
+    $autosign_secret              = hiera("profiles::puppet::master::autosign_secret", false),
+    $proxy                        = hiera("profiles::puppet::master::proxy", false),
+    $sysconf_puppet               = $::profiles::puppet::params::sysconf_puppet,
+    $sysconf_puppetserver         = $::profiles::puppet::params::sysconf_puppetserver,
+    $puppet_agent_service         = $::profiles::puppet::params::puppet_agent_service,
+#    $deploy_pub_key      = "",
+#    $deploy_private_key  = "",
+    $environmentpath              = $::profiles::puppet::params::environmentpath,
 ) inherits profiles::puppet::params {
-  validate_bool($hiera_eyaml,$autosign)
+
+  validate_bool($hiera_eyaml)
+  if ($autosign_script) {
+    validate_absolute_path($autosign_script)
+  }
+  if $autosign_ensure == present and $policy_based_autosign_ensure == present {
+    fail("Only one of autosign_ensure or policy_based_autosign_ensure can be set in profiles::puppet::master")
+  }
 
   File {
     owner => "root",
@@ -33,12 +43,13 @@ class profiles::puppet::master (
     notify       => Service["pe-puppetserver"],
   }
 
-  if $autosign {
-    file { "autosign":
-      ensure  => "present",
-      content => "*",
-      path    => "${::settings::confdir}/autosign.conf",
-    }
+  include profiles::policy_based_autosign
+
+  file { "autosign":
+    ensure  => $autosign_ensure,
+    content => "*",
+    path    => "${::settings::confdir}/autosign.conf",
+    notify  => Service["pe-puppetserver"]
   }
 
   if $pe_server_version == "2015.2.0" {

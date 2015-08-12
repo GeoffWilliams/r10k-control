@@ -32,4 +32,5 @@ class profiles::puppet::params {
   $git_config_file        = "/root/.gitconfig"
   $puppetconf             = "${::settings::confdir}/puppet.conf"
   $generate_r10k_mco_cert = true
+  $autosign_script        = "/usr/local/bin/autosign.sh"
 }
