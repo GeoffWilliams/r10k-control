@@ -4,10 +4,8 @@ class profiles::puppet::master (
     $policy_based_autosign_ensure = hiera("profiles::puppet::master::policy_based_autosign_ensure", absent),
     $autosign_script              = $profiles::puppet::params::autosign_script,
     $autosign_secret              = hiera("profiles::puppet::master::autosign_secret", false),
-    $proxy                        = hiera("profiles::puppet::master::proxy", false),
-    $sysconf_puppet               = $::profiles::puppet::params::sysconf_puppet,
+    $proxy                        = hiera("profiles::puppet::proxy", false),
     $sysconf_puppetserver         = $::profiles::puppet::params::sysconf_puppetserver,
-    $puppet_agent_service         = $::profiles::puppet::params::puppet_agent_service,
     $data_binding_terminus        = hiera("profiles::puppet::master::data_binding_terminus", "none"),
 #    $deploy_pub_key      = "",
 #    $deploy_private_key  = "",
@@ -73,7 +71,7 @@ class profiles::puppet::master (
       enable => true,
     }
 
-    file { [ $sysconf_puppet, $sysconf_puppetserver]:
+    file { $sysconf_puppetserver:
       ensure => file,
       owner  => "root",
       group  => "root",
@@ -154,23 +152,10 @@ class profiles::puppet::master (
                 Exec["systemctl_daemon_reload"] ],
   }
 
-  file_line { "puppet agent http_proxy":
-    ensure => $proxy_ensure,
-    path   => $sysconf_puppet,
-    line   => $http_proxy_var,
-    match  => "^${sysconf_prefix}http_proxy=",
-    notify => [ Service[$puppet_agent_service],
-                Exec["systemctl_daemon_reload"] ],
+  class { "profiles::puppet::agent":
+    proxy => $proxy,
   }
 
-  file_line { "puppet agent https_proxy":
-    ensure => $proxy_ensure,
-    path   => $sysconf_puppet,
-    line   => $https_proxy_var,
-    match  => "^${sysconf_prefix}https_proxy=",
-    notify => [ Service[$puppet_agent_service],
-                Exec["systemctl_daemon_reload"] ],
-  }
 
   # patch the puppetserver gem command
   if $pe_server_version == "2015.2.0" {

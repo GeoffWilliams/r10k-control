@@ -8,7 +8,7 @@ profiles::puppet::r10k::remote: "https://github.com/GeoffWilliams/r10k-control"
 # information in the usual http://user:host@... notation but note that this
 # will not be supported in all areas of puppet, notably anything running 
 # inside JRuby such as the `puppetserver gem` command  or the `pe_repo` module
-# profiles::puppet::master::proxy: "http://proxy.megacorp.com:8080"
+# profiles::puppet::proxy: "http://proxy.megacorp.com:8080"
 
 # Example of how to enable policy based autosigning
 # profiles::puppet::master::policy_based_autosign_ensure: "present"
