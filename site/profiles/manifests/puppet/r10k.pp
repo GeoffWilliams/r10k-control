@@ -31,7 +31,7 @@
 class profiles::puppet::r10k (
   $remote                 = hiera("profiles::puppet::r10k::remote"),
   $environmentpath        = $::profiles::puppet::params::environmentpath,
-  $proxy                  = hiera("profiles::puppet::master::proxy", undef),
+  $proxy                  = hiera("profiles::puppet::proxy", undef),
   $git_config_file        = $::profiles::puppet::params::git_config_file,
   $mco_plugin             = hiera("profiles::puppet::r10k::mco_plugin", false),
   $mco_user               = hiera("profiles::puppet::r10k::mco_user", false),
