@@ -8,9 +8,11 @@ class profiles::puppet::master (
     $sysconf_puppet               = $::profiles::puppet::params::sysconf_puppet,
     $sysconf_puppetserver         = $::profiles::puppet::params::sysconf_puppetserver,
     $puppet_agent_service         = $::profiles::puppet::params::puppet_agent_service,
+    $data_binding_terminus        = hiera("profiles::puppet::master::data_binding_terminus", "none"),
 #    $deploy_pub_key      = "",
 #    $deploy_private_key  = "",
     $environmentpath              = $::profiles::puppet::params::environmentpath,
+    $puppetconf                   = $::profiles::puppet::params::puppetconf,
 ) inherits profiles::puppet::params {
 
   validate_bool($hiera_eyaml)
@@ -39,14 +41,14 @@ class profiles::puppet::master (
       "env/%{environment}",
       "common",
     ],
-    datadir      => $profiles::puppet::params::hieradir,
-    backends     => $backends,
-    eyaml        => $hiera_eyaml,
-    owner        => "pe-puppet",
-    group        => "pe-puppet",
-    provider     => "pe_puppetserver_gem",
+    datadir         => $profiles::puppet::params::hieradir,
+    backends        => $backends,
+    eyaml           => $hiera_eyaml,
+    owner           => "pe-puppet",
+    group           => "pe-puppet",
+    provider        => "pe_puppetserver_gem",
     eyaml_extension => "yaml",
-    notify       => Service["pe-puppetserver"],
+    notify          => Service["pe-puppetserver"],
   }
 
   include profiles::puppet::policy_based_autosign
@@ -86,6 +88,15 @@ class profiles::puppet::master (
     group   => "root",
     mode    => "0755",
     content => template("${module_name}/puppet_git_revision.sh.erb"),
+  }
+
+  # data binding terminus explicit
+  init_set { "puppet.conf data_binding_terminus":
+    ensure  => present,
+    setting => "data_binding_terminus",
+    value   => $data_binding_terminus,
+    section => "master", 
+    path    => $puppetconf,
   }
 
   #
