@@ -138,11 +138,6 @@ class profiles::puppet::master (
                 Exec["systemctl_daemon_reload"] ],
   }
 
-  class { "profiles::puppet::agent":
-    proxy => $proxy,
-  }
-
-
   # patch the puppetserver gem command
   if $pe_server_version == "2015.2.0" {
     $file_to_patch = "/opt/puppetlabs/server/apps/puppetserver/cli/apps/gem"
