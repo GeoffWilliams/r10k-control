@@ -97,6 +97,7 @@ class profiles::puppet::master (
     value   => $data_binding_terminus,
     section => "master", 
     path    => $puppetconf,
+    notify  => Service["pe-puppetserver"],
   }
 
   #
