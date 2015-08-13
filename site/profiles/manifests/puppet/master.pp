@@ -58,25 +58,11 @@ class profiles::puppet::master (
     notify  => Service["pe-puppetserver"]
   }
 
-  if $pe_server_version == "2015.2.0" {
-    # PE-11353:  Allow referral to the puppet service
-    service { "puppet":
-      ensure => running,
-      enable => true,
-    }
-  } else {
-    # Old puppet versions never had this defined... 
-    service { "pe-puppet":
-      ensure => running,
-      enable => true,
-    }
-
-    file { $sysconf_puppetserver:
-      ensure => file,
-      owner  => "root",
-      group  => "root",
-      mode   => "0644",
-    }
+  file { $sysconf_puppetserver:
+    ensure => file,
+    owner  => "root",
+    group  => "root",
+    mode   => "0644",
   }
 
   # git revision in catalogue

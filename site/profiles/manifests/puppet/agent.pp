@@ -6,13 +6,21 @@ class profiles::puppet::agent(
     $puppet_agent_service         = $::profiles::puppet::params::puppet_agent_service,
 ) inherits profiles::puppet::params {
 
+  # register the service so we can restart it if needed
+  # PE-11353 means we may not need this forever
+  service { $puppet_agent_service:
+    ensure => running,
+    enable => true,
+  }
 
   file { $sysconf_puppet:
     ensure => file,
     owner  => "root",
     group  => "root",
     mode   => "0644",
-  }
+    notify => [ Service[$puppet_agent_service],
+                Exec["systemctl_daemon_reload"] ], 
+ }
 
   #
   # Proxy server monkey patching
@@ -36,8 +44,6 @@ class profiles::puppet::agent(
     path   => $sysconf_puppet,
     line   => $http_proxy_var,
     match  => "^${sysconf_prefix}http_proxy=",
-    notify => [ Service[$puppet_agent_service],
-                Exec["systemctl_daemon_reload"] ],
   }
 
   file_line { "puppet agent https_proxy":
@@ -45,7 +51,5 @@ class profiles::puppet::agent(
     path   => $sysconf_puppet,
     line   => $https_proxy_var,
     match  => "^${sysconf_prefix}https_proxy=",
-    notify => [ Service[$puppet_agent_service],
-                Exec["systemctl_daemon_reload"] ],
   }
 }

@@ -2,13 +2,14 @@
 # /opt/puppetlabs/puppet/lib/ruby/vendor_ruby/puppet/settings.rb
 class profiles::puppet::params {
 
-  if $pe_server_version {
-    # PE 2015
+  if $pe_server_version or $aio_agent_version {
+    # PE 2015/AIO agent
     $sysconf_puppet       = "/etc/sysconfig/puppet"
     $puppet_agent_service = "puppet"
     $_codedir             = $::settings::codedir
     $mco_service          = "mcollective"
   } else {
+    # setup for PE 3.8x -- we don't support OSS puppet with this module anyway...
     $sysconf_puppet       = "/etc/sysconfig/pe-puppet"
     $puppet_agent_service = "pe-puppet"
     $_codedir             = $::settings::confdir
