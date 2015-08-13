@@ -26,6 +26,12 @@ class profiles::puppet::master (
     group => "root",
   }
 
+  if $hiera_eyaml {
+    $backends = [ "eyaml" ]
+  } else {
+    $backends = [ "hiera" ]
+  }
+
   class { "hiera":
     hierarchy => [
       "nodes/%{clientcert}",
