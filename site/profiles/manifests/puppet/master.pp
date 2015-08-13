@@ -91,7 +91,7 @@ class profiles::puppet::master (
   }
 
   # data binding terminus explicit
-  ini_set { "puppet.conf data_binding_terminus":
+  ini_setting { "puppet.conf data_binding_terminus":
     ensure  => present,
     setting => "data_binding_terminus",
     value   => $data_binding_terminus,
