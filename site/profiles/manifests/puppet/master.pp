@@ -98,21 +98,20 @@ class profiles::puppet::master (
     $regexp = 'https?://(.*?@)?([^:]+):(\d+)'
     $proxy_host = regsubst($proxy, $regexp, '\2')
     $proxy_port = regsubst($proxy, $regexp, '\3')
-  }
-  $proxy_ensure = $proxy ? {
-    /.*/    => present,
-    default => absent,
-  }
-
-  if $export_variable {
-    # solaris needs a 2-step export
-    $http_proxy_var   = "http_proxy=${proxy}; export http_proxy"
-    $https_proxy_var  = "https_proxy=${proxy}; export https_proxy"
+    if $export_variable {
+      # solaris needs a 2-step export
+      $http_proxy_var   = "http_proxy=${proxy}; export http_proxy"
+      $https_proxy_var  = "https_proxy=${proxy}; export https_proxy"
+    } else {
+      $http_proxy_var   = "http_proxy=${proxy}"
+      $https_proxy_var  = "https_proxy=${proxy}"
+    }
   } else {
-    $http_proxy_var   = "http_proxy=${proxy}"
-    $https_proxy_var  = "https_proxy=${proxy}"
+    # nasty hack - we MUST have two different space permuations here or 
+    # file_line will only remove a single entry as it has already matched 
+    $http_proxy_var  = " "
+    $https_proxy_var = "  "
   }
-
 
   Ini_setting {
     ensure => $proxy_ensure,
@@ -135,14 +134,14 @@ class profiles::puppet::master (
 
   # Enable pe-puppetserver to work with proxy
   file_line { "pe-puppetserver http_proxy":
-    ensure => $proxy_ensure,
+    ensure => present,
     path   => $sysconf_puppetserver,
     line   => $http_proxy_var,
     match  => "http_proxy=",    
   }
 
   file_line { "pe-puppetserver https_proxy":
-    ensure => $proxy_ensure,
+    ensure => present,
     path   => $sysconf_puppetserver,
     line   => $https_proxy_var,
     match  => "https_proxy=",
