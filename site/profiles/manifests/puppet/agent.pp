@@ -18,9 +18,13 @@ class profiles::puppet::agent(
     owner  => "root",
     group  => "root",
     mode   => "0644",
-    notify => [ Service[$puppet_agent_service],
-                Exec["systemctl_daemon_reload"] ], 
- }
+  }
+
+  # restart agent service if any file_line resources change it
+  File_line <| path == $sysconf_puppet |> ~>  [ 
+    Service[$puppet_agent_service],
+    Exec["systemctl_daemon_reload"] 
+  ]
 
   #
   # Proxy server monkey patching

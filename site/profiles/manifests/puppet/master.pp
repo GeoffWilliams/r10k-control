@@ -64,9 +64,13 @@ class profiles::puppet::master (
     owner  => "root",
     group  => "root",
     mode   => "0644",
-    notify => [ Service["pe-puppetserver"],
-                Exec["systemctl_daemon_reload"] ],
   }
+
+  # restart master service if any file_lines change its config file
+  File_line <| path == $sysconf_puppetserver |> ~>  [ 
+    Service["pe-puppetserver"],
+    Exec["systemctl_daemon_reload"] 
+  ]
 
   # git revision in catalogue
   file { "/usr/local/bin/puppet_git_revision.sh":
