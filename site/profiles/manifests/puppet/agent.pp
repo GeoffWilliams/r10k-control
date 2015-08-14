@@ -2,7 +2,7 @@
 class profiles::puppet::agent(
     $proxy                        = hiera("profiles::puppet::proxy", false),
     $sysconf_puppet               = $::profiles::puppet::params::sysconf_puppet,
-    $sysconf_prefix               = $::profiles::puppet::params::sysconf_prefix,
+    $export_variable              = $::profiles::puppet::params::export_variable,
     $puppet_agent_service         = $::profiles::puppet::params::puppet_agent_service,
 ) inherits profiles::puppet::params {
 
@@ -35,21 +35,26 @@ class profiles::puppet::agent(
     default => absent,
   }
 
-  $http_proxy_var = "${sysconf_prefix}http_proxy=${proxy}"
-  $https_proxy_var = "${sysconf_prefix}https_proxy=${proxy}"
-
+  if $export_variable {
+    # solaris needs a 2-step export
+    $http_proxy_var   = "http_proxy=${proxy}; export http_proxy"
+    $https_proxy_var  = "https_proxy=${proxy}; export https_proxy"
+  } else {
+    $http_proxy_var   = "http_proxy=${proxy}"
+    $https_proxy_var  = "https_proxy=${proxy}"
+  }
 
   file_line { "puppet agent http_proxy":
     ensure => $proxy_ensure,
     path   => $sysconf_puppet,
     line   => $http_proxy_var,
-    match  => "^${sysconf_prefix}http_proxy=",
+    match  => "http_proxy=",
   }
 
   file_line { "puppet agent https_proxy":
     ensure => $proxy_ensure,
     path   => $sysconf_puppet,
     line   => $https_proxy_var,
-    match  => "^${sysconf_prefix}https_proxy=",
+    match  => "https_proxy=",
   }
 }

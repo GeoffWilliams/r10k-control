@@ -11,6 +11,7 @@ class profiles::puppet::master (
 #    $deploy_private_key  = "",
     $environmentpath              = $::profiles::puppet::params::environmentpath,
     $puppetconf                   = $::profiles::puppet::params::puppetconf,
+    $export_variable              = $::profiles::puppet::params::export_variable,
 ) inherits profiles::puppet::params {
 
   validate_bool($hiera_eyaml)
@@ -63,6 +64,8 @@ class profiles::puppet::master (
     owner  => "root",
     group  => "root",
     mode   => "0644",
+    notify => [ Service["pe-puppetserver"],
+                Exec["systemctl_daemon_reload"] ],
   }
 
   # git revision in catalogue
@@ -97,8 +100,15 @@ class profiles::puppet::master (
     default => absent,
   }
 
-  $http_proxy_var = "${sysconf_prefix}http_proxy=${proxy}"
-  $https_proxy_var = "${sysconf_prefix}https_proxy=${proxy}"
+  if $export_variable {
+    # solaris needs a 2-step export
+    $http_proxy_var   = "http_proxy=${proxy}; export http_proxy"
+    $https_proxy_var  = "https_proxy=${proxy}; export https_proxy"
+  } else {
+    $http_proxy_var   = "http_proxy=${proxy}"
+    $https_proxy_var  = "https_proxy=${proxy}"
+  }
+
 
   Ini_setting {
     ensure => $proxy_ensure,
@@ -124,18 +134,14 @@ class profiles::puppet::master (
     ensure => $proxy_ensure,
     path   => $sysconf_puppetserver,
     line   => $http_proxy_var,
-    match  => "^${sysconf_prefix}http_proxy=",    
-    notify => [ Service["pe-puppetserver"],
-                Exec["systemctl_daemon_reload"] ],
+    match  => "http_proxy=",    
   }
 
   file_line { "pe-puppetserver https_proxy":
     ensure => $proxy_ensure,
     path   => $sysconf_puppetserver,
     line   => $https_proxy_var,
-    match  => "^${sysconf_prefix}https_proxy=",
-    notify => [ Service["pe-puppetserver"],
-                Exec["systemctl_daemon_reload"] ],
+    match  => "https_proxy=",
   }
 
   # patch the puppetserver gem command

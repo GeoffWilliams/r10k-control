@@ -3,12 +3,11 @@ class profiles::systemd {
   # Provide a graph node that we can notify to get systemd to reload itself.  
   # If this is not a systemd controlled system, we simply run the true command
   # instead so that we can exit with status 0
-  if $::osfamily == 'RedHat' {
-    if $::operatingsystemrelease =~ /^7/ or $::operatingsystem == 'Fedora' {
+  if    $::osfamily == 'RedHat' 
+        and ($::operatingsystemrelease =~ /^7/ or $::operatingsystem == 'Fedora') {
       $command = "systemctl daemon-reload"
-    } else {
-      $command = "true"
-    }
+  } else {
+    $command = "true"
   }
 
   exec { "systemctl_daemon_reload":
