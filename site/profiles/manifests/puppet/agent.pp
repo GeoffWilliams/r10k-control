@@ -33,7 +33,6 @@ class profiles::puppet::agent(
     $regexp = 'https?://(.*?@)?([^:]+):(\d+)'
     $proxy_host = regsubst($proxy, $regexp, '\2')
     $proxy_port = regsubst($proxy, $regexp, '\3')
-    $proxy_ensure = present
     if $export_variable {
       # solaris needs a 2-step export
       $http_proxy_var   = "http_proxy=${proxy}; export http_proxy"
@@ -43,20 +42,21 @@ class profiles::puppet::agent(
       $https_proxy_var  = "https_proxy=${proxy}"
     }
   } else {
-    $proxy_ensure    = absent
-    $http_proxy_var  = ""
-    $https_proxy_var = "" 
+    # nasty hack - we MUST have two different space permuations here or 
+    # file_line will only remove a single entry as it has already matched 
+    $http_proxy_var  = " "
+    $https_proxy_var = "  " 
   }
 
   file_line { "puppet agent http_proxy":
-    ensure => $proxy_ensure,
+    ensure => present,
     path   => $sysconf_puppet,
     line   => $http_proxy_var,
     match  => "http_proxy=",
   }
 
   file_line { "puppet agent https_proxy":
-    ensure => $proxy_ensure,
+    ensure => present,
     path   => $sysconf_puppet,
     line   => $https_proxy_var,
     match  => "https_proxy=",
