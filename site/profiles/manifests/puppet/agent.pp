@@ -33,19 +33,19 @@ class profiles::puppet::agent(
     $regexp = 'https?://(.*?@)?([^:]+):(\d+)'
     $proxy_host = regsubst($proxy, $regexp, '\2')
     $proxy_port = regsubst($proxy, $regexp, '\3')
-  }
-  $proxy_ensure = $proxy ? {
-    /.*/    => present,
-    default => absent,
-  }
-
-  if $export_variable {
-    # solaris needs a 2-step export
-    $http_proxy_var   = "http_proxy=${proxy}; export http_proxy"
-    $https_proxy_var  = "https_proxy=${proxy}; export https_proxy"
+    $proxy_ensure = present
+    if $export_variable {
+      # solaris needs a 2-step export
+      $http_proxy_var   = "http_proxy=${proxy}; export http_proxy"
+      $https_proxy_var  = "https_proxy=${proxy}; export https_proxy"
+    } else {
+      $http_proxy_var   = "http_proxy=${proxy}"
+      $https_proxy_var  = "https_proxy=${proxy}"
+    }
   } else {
-    $http_proxy_var   = "http_proxy=${proxy}"
-    $https_proxy_var  = "https_proxy=${proxy}"
+    $proxy_ensure    = absent
+    $http_proxy_var  = undef
+    $https_proxy_var = undef 
   }
 
   file_line { "puppet agent http_proxy":
