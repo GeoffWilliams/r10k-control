@@ -44,8 +44,8 @@ class profiles::puppet::agent(
     }
   } else {
     $proxy_ensure    = absent
-    $http_proxy_var  = undef
-    $https_proxy_var = undef 
+    $http_proxy_var  = ""
+    $https_proxy_var = "" 
   }
 
   file_line { "puppet agent http_proxy":
