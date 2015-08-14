@@ -22,8 +22,8 @@ class profiles::puppet::agent(
 
   # restart agent service if any file_line resources change it
   File_line <| path == $sysconf_puppet |> ~>  [ 
+    Exec["systemctl_daemon_reload"],
     Service[$puppet_agent_service],
-    Exec["systemctl_daemon_reload"] 
   ]
 
   #
