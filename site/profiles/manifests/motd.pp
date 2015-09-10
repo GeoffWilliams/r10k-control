@@ -6,7 +6,7 @@
 # *inline_template*
 #   string to be processed as an inline template for the MOTD
 class profiles::motd(
-    $template         = hiera("profiles::motd::template", "motd/motd.erb"),
+    $template         = hiera("profiles::motd::template", undef),
     $inline_template  = hiera("profiles::motd::inline_template", ""),
 ) {
 
