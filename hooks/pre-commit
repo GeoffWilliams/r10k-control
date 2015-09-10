@@ -1,0 +1,37 @@
+#!/bin/bash
+
+if git rev-parse --verify HEAD >/dev/null 2>&1
+then
+    against=HEAD
+else
+    # Initial commit: diff against an empty tree object
+    against=$(git hash-object -t tree /dev/null)
+fi
+EXITCODE=0
+for file in `git diff-index --cached --diff-filter=ACM --name-only $against`
+do
+  echo "Validating ${file}..."
+
+  case "${file##*.}" in
+    "pp")  puppet parser validate ${file}
+           ;;
+
+    "erb") erb -P -x -T '-' ${file} | ruby -c >/dev/null
+           ;;
+
+    "yaml") ruby -ryaml -e "YAML.load_file '${file}'" >/dev/null
+           ;;
+
+  esac
+
+  EXITCODE=$((EXITCODE + $?))
+done
+
+if [ $EXITCODE -ne 0 ]
+then
+  echo
+  echo "################################################################"
+  echo -e "### \033[31mPlease fix the errors above before committing your code.\033[0m ###"
+  echo "################################################################"
+  echo
+fi
