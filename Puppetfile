@@ -10,3 +10,4 @@ mod "hiera",
   :ref => "double_gem"
 mod "mcollective_user",
   :git => "https://github.com/GeoffWilliams/geoffwilliams-mcollective_user"
+mod "saz/puppet-motd"
