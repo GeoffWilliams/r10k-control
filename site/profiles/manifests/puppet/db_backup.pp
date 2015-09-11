@@ -19,6 +19,6 @@ class profiles::puppet::db_backup(
     month       => $db_backup_month,
     monthday    => $db_backup_monthday,
     weekday     => $db_backup_weekday,
-    environment => "PATH=/opt/puppetlabs/bin:/opt/puppet/bin/:/usr/local/bin:/usr/bin:/bin",
+    environment => "PATH=/opt/puppetlabs/server/bin:/opt/puppetlabs/bin:/opt/puppet/bin/:/usr/local/bin:/usr/bin:/bin",
   }
 }
