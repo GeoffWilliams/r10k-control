@@ -4,6 +4,7 @@ class profiles::base(
   include profiles::puppet::agent
   include profiles::systemd
   include profiles::motd 
+  include profiles::software
 
   class { "ntp":
     disable_monitor => true,
