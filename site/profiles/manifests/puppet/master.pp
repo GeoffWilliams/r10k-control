@@ -1,17 +1,24 @@
 class profiles::puppet::master (
     $hiera_eyaml                  = true,
     $autosign_ensure              = absent,
+    $db_backup_ensure             = hiera("profiles::puppet::master::db_backup_ensure", absent),
+    $db_backup_dir                = hiera("profiles::puppet::master::db_backup_dir", $profiles::puppet::params::db_backup_dir),
+    $db_backup_hour               = hiera("profiles::puppet::master::db_backup_hour", $profiles::puppet::master::db_backup_hour),
+    $db_backup_minute             = hiera("profiles::puppet::master::db_backup_minute", $profiles::puppet::master::db_backup_minute),
+    $db_backup_month              = hiera("profiles::puppet::master::db_backup_month", $profiles::puppet::master::db_backup_month),
+    $db_backup_monthday           = hiera("profiles::puppet::master::db_backup_monthday", $profiles::puppet::master::db_backup_monthday),
+    $db_backup_weekday            = hiera("profiles::puppet::master::db_backup_weekday", $profiles::puppet::master::db_backup_weekday),
     $policy_based_autosign_ensure = hiera("profiles::puppet::master::policy_based_autosign_ensure", absent),
     $autosign_script              = $profiles::puppet::params::autosign_script,
     $autosign_secret              = hiera("profiles::puppet::master::autosign_secret", false),
     $proxy                        = hiera("profiles::puppet::proxy", false),
-    $sysconf_puppetserver         = $::profiles::puppet::params::sysconf_puppetserver,
+    $sysconf_puppetserver         = $profiles::puppet::params::sysconf_puppetserver,
     $data_binding_terminus        = hiera("profiles::puppet::master::data_binding_terminus", "none"),
 #    $deploy_pub_key      = "",
 #    $deploy_private_key  = "",
-    $environmentpath              = $::profiles::puppet::params::environmentpath,
-    $puppetconf                   = $::profiles::puppet::params::puppetconf,
-    $export_variable              = $::profiles::puppet::params::export_variable,
+    $environmentpath              = $profiles::puppet::params::environmentpath,
+    $puppetconf                   = $profiles::puppet::params::puppetconf,
+    $export_variable              = $profiles::puppet::params::export_variable,
 ) inherits profiles::puppet::params {
 
   validate_bool($hiera_eyaml)
@@ -51,6 +58,7 @@ class profiles::puppet::master (
   }
 
   include profiles::puppet::policy_based_autosign
+  include profiles::puppet::db_backup
 
   file { "autosign":
     ensure  => $autosign_ensure,

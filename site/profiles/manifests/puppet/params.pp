@@ -57,4 +57,11 @@ class profiles::puppet::params {
   $puppetconf             = "${::settings::confdir}/puppet.conf"
   $generate_r10k_mco_cert = true
   $autosign_script        = "/usr/local/bin/autosign.sh"
+
+  $db_backup_dir          = "/tmp"
+  $db_backup_hour         = 5
+  $db_backup_minute       = 0
+  $db_backup_month        = "*"
+  $db_backup_monthday     = "*"
+  $db_backup_weekday      = "*"
 }
