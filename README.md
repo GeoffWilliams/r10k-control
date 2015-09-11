@@ -1,4 +1,6 @@
 # R10K Control Repository
+[![Build Status](https://travis-ci.org/GeoffWilliams/r10k-control.svg?branch=production)](https://travis-ci.org/GeoffWilliams/r10k-control)
+
 A basic R10K control repository including:
 * Production branch (master is deleted)
 * Local roles and profiles site directory
