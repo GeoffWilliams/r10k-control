@@ -2,7 +2,7 @@
 sudo: false
 language: ruby
 bundler_args: --without development
-script: "bundle exec rake spec SPEC_OPTS='--format documentation'"
+script: "bundle exec rake spec SPEC_OPTS='--format documentation' && bundle exec rspec spec/acceptance"
 rvm:
   - 2.0.0
 env:
