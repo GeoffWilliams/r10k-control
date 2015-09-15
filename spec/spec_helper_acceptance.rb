@@ -24,9 +24,16 @@ hosts.each do |host|
   scp_to host, "#{proj_root}/Puppetfile", "/etc/puppetlabs/code" 
   on host, 'gem install --no-ri --no-rdoc r10k' 
   on host, "cd /etc/puppetlabs/code && r10k puppetfile install --verbose"
-  
+
   # install the roles and profiles modules as regular modules (r10k puppetfile... 
   # doesn't deal with anything not listed in the Puppetfile
   puppet_module_install(:source => "#{proj_root}/site/roles", :module_name => 'roles')
   puppet_module_install(:source => "#{proj_root}/site/profiles", :module_name => 'profiles')
+  install_puppet_module_via_pmt_on(host, { :module_name => 'geoffwilliams-puppet_enterprise'})
+
+  # hiera data
+  hiera_dir = "/root/spec/fixtures/hieradata/"
+  on host, "mkdir -p #{hiera_dir}"
+  scp_to host, "#{proj_root}/integration_test/hiera.yaml", "/etc/puppetlabs/code"
+  scp_to host, "#{proj_root}/integration_test/hieradata/testdata.yaml", hiera_dir
 end
