@@ -3,10 +3,17 @@ require "spec_helper_acceptance"
 def test_class(classname)
   describe classname do
     it "include #{classname} should work" do
-      exit_code = apply_manifest("include #{classname}", :catch_failures => true).exit_code
-      expect(exit_code).to_not eq(1) # generic error code - cant be right...
-      expect(exit_code).to_not eq(4) # failures
-      expect(exit_code).to_not eq(6) # failures and changes
+      pp = <<-EOS
+        # simulate puppet_enterprise
+        include puppet_enterprise
+
+        # the test itself
+        include #{classname}
+      EOS
+
+      # Run it twice and test for idempotency
+      apply_manifest(pp, :catch_failures => true)
+      expect(apply_manifest(pp, :catch_failures => true).exit_code).to be_zero
     end
   end
 end
