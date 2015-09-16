@@ -34,27 +34,32 @@ hosts.each do |host|
 
   # scp the puppet file, then run r10k on it.  Needs to be placed in the 
   # directory you want ./modules to appear in
-  scp_to host, "#{proj_root}/Puppetfile", "/etc/puppetlabs/code" 
+  ###scp_to host, "#{proj_root}/Puppetfile", "/etc/puppetlabs/code" 
 #  on host, 'gem install --no-ri --no-rdoc r10k' 
-  on host, "cd /etc/puppetlabs/code && r10k puppetfile install --verbose"
+  ###on host, "cd /etc/puppetlabs/code && r10k puppetfile install --verbose"
 
   # install the roles and profiles modules as regular modules (r10k puppetfile... 
   # doesn't deal with anything not listed in the Puppetfile).  Have to use 
   # SCP because puppet_module_install() puts modules in the old directory...
-  scp_to host, "#{proj_root}/site/roles", "/etc/puppetlabs/code/modules"
-  scp_to host, "#{proj_root}/site/profiles", "/etc/puppetlabs/code/modules"
+  ###scp_to host, "#{proj_root}/site/roles", "/etc/puppetlabs/code/modules"
+  ###scp_to host, "#{proj_root}/site/profiles", "/etc/puppetlabs/code/modules"
 
   # manually install the mock puppet_enterprise module.  If we try to use the 
   # real one in puppet apply mode, it will destroy the system because it needs
   # access to resource collectors. There appears to be no other way to do this.
   # We only need puppet enterprise module to create the pe-puppetserver service
   # for us and to avoid compile failures anyway...
+
+
+  # bootstrap!
+  scp_to host, "#{proj_root}", "/root", {:ignore => ".git/hooks/pre-commit"}
+  on host, "cd /root/r10k-control && ./bootstrap.sh"
   on host, "puppet module install --force geoffwilliams-puppet_enterprise"
 
 
-  # hiera data
-  hiera_dir = "/root/spec/fixtures/hieradata/"
-  on host, "mkdir -p #{hiera_dir}"
-  scp_to host, "#{proj_root}/integration_test/hiera.yaml", "/etc/puppetlabs/code"
-  scp_to host, "#{proj_root}/integration_test/hieradata/testdata.yaml", hiera_dir
+  # override 'real' hieradata with integration test data
+  hiera_dir = "/etc/puppetlabs/code/environments/production/hieradata"
+  ###on host, "mkdir -p #{hiera_dir}"
+  ###scp_to host, "#{proj_root}/integration_test/hiera.yaml", "/etc/puppetlabs/code"
+  scp_to host, "#{proj_root}/integration_test/hieradata/common.yaml", hiera_dir
 end
