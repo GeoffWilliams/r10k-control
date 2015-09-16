@@ -18,7 +18,7 @@ GEM
     aws-sdk-v1 (1.66.0)
       json (~> 1.4)
       nokogiri (>= 1.4.4)
-    beaker (2.23.0)
+    beaker (2.24.0)
       aws-sdk (~> 1.57)
       beaker-answers (~> 0.0)
       docker-api
@@ -268,7 +268,7 @@ GEM
       jwt (~> 1.5)
       multi_json (~> 1.10)
     slop (3.6.0)
-    specinfra (2.43.4)
+    specinfra (2.43.5)
       net-scp
       net-ssh (~> 2.7)
       net-telnet

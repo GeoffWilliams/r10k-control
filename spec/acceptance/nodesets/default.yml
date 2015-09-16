@@ -1,13 +1,29 @@
 HOSTS:
-  centos7:
-#    roles:
-#      - "agent"
+  pe-puppet.localdomain:
+    roles:
+      - "agent"
+      - "master"
     platform: "el-7-x86_64"
-    image: "centos:7"
+    image: "pe2015-2-0_aio-master"
+    ssh_installed: true
     hypervisor : "docker"
-    docker_cmd: '["/sbin/init"]'
-    docker_image_commands:
-      - "yum -y install git"
+#    docker_cmd: '["/usr/sbin/init"]'
+#    docker_image_commands:
+
+#      - "yum -y install git"
+#      - "yum -y install cronie"
+#      - "yum -y install wget"
+#      - "yum -y swap -- remove systemd-container systemd-container-libs -- install systemd systemd-libs"
+#      - "(cd /lib/systemd/system/sysinit.target.wants/; for i in *; do [ $i == systemd-tmpfiles-setup.service ] || rm -f $i; done);"
+#      - "rm -f /lib/systemd/system/multi-user.target.wants/*"
+#      - "rm -f /etc/systemd/system/*.wants/*"
+#      - "rm -f /lib/systemd/system/local-fs.target.wants/*"
+#      - "rm -f /lib/systemd/system/sockets.target.wants/*udev*"
+#      - "rm -f /lib/systemd/system/sockets.target.wants/*initctl*"
+#      - "rm -f /lib/systemd/system/basic.target.wants/*"
+#      - "rm -f /lib/systemd/system/anaconda.target.wants/*"
+#      - "systemctl disable firewalld"
+#      - "systemctl stop firewalld"
 #      - "yum -y install https://yum.puppetlabs.com/puppetlabs-release-pc1-el-7.noarch.rpm"
 #      - "yum -y install puppet"
 #      - "ln -s /opt/puppetlabs/puppet/bin/puppet /usr/bin/puppet"

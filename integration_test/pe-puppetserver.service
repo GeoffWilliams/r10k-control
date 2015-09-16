@@ -1,0 +1,11 @@
+[Unit]
+Description=Mock pe-puppetserver service
+
+[Service]
+TimeoutStartSec=0
+ExecStart=/bin/echo "MOCK pe-puppetserver started"
+ExecStop=/bin/echo "MOCK pe-puppetserver stopped"
+
+[Install]
+WantedBy=multi-user.target
+

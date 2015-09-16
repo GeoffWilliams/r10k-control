@@ -4,8 +4,19 @@ def test_class(classname)
   describe classname do
     it "include #{classname} should work" do
       pp = <<-EOS
-        # simulate puppet_enterprise
-        include puppet_enterprise
+        # Other modules depend on puppet-enterprise on the master.  We can't 
+        # just include it in our roles/profiles as this would cause a conflict
+        # with the parameterised class in the NC
+        class { "puppet_enterprise":
+          certificate_authority_host    => "pe-puppet.localdomain",
+          console_host                  => "pe-puppet.localdomain",
+          puppet_master_host            => "pe-puppet.localdomain",
+          puppetdb_host                 => "pe-puppet.localdomain",
+          database_host                 => "pe-puppet.localdomain",
+          mcollective_middleware_hosts  => [ "pe-puppet.localdomain" ],
+        }
+
+        #class { "puppet_enterprise::profile::master": }
 
         # the test itself
         include #{classname}
@@ -41,6 +52,12 @@ if role_classes then
   end
 end
 
+profile_classes = classnames("site/roles")
+if profile_classes then
+  profile_classes.each do |profile_class|
+    test_class(profile_class)
+  end
+end
 
 
 #describe "profiles::motd" do
