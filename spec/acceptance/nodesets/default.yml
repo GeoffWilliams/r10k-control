@@ -4,8 +4,8 @@ HOSTS:
       - "agent"
       - "master"
     platform: "el-7-x86_64"
-    image: "pe2015-2-0_aio-master"
-    ssh_installed: true
+#    image: "pe2015-2-0_aio-master"
+    dockerfile: "./spec/Dockerfile"
     hypervisor : "docker"
 CONFIG:
   log_level: "debug"
