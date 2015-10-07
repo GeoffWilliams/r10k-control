@@ -1,5 +1,6 @@
 ---
-profiles::puppet::r10k::remote: "https://github.com/GeoffWilliams/r10k-control"
+#profiles::puppet::r10k::remote: "https://github.com/GeoffWilliams/r10k-control"
+profiles::puppet::r10k::remote: "/root/r10k-control"
 profiles::puppet::r10k::mco_user: "deploy"
 profiles::puppet::r10k_mcollective_client::activemq_brokers:
   - "pe-puppet.localdomain"

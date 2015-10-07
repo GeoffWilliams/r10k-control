@@ -12,8 +12,7 @@ hosts.each do |host|
   on host, "cd /root/r10k-control && ./bootstrap.sh"
   on host, "puppet module install --force geoffwilliams-puppet_enterprise"
 
-
-  # override 'real' hieradata with integration test data
-  hiera_dir = "/etc/puppetlabs/code/environments/production/hieradata"
-  scp_to host, "#{proj_root}/integration_test/hieradata/common.yaml", hiera_dir
+  # external fact to indicate we are running beaker - gets picked up during 
+  # bootstrap puppet code
+  on host, "mkdir -p /etc/facter/facts.d && echo is_beaker=true > beaker.txt"
 end
