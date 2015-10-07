@@ -10,7 +10,7 @@ hosts.each do |host|
   # bootstrap puppet code
   on host, "mkdir -p /etc/facter/facts.d && echo 'is_beaker=true' > /etc/facter/facts.d/beaker.txt"
 
-  scp_to host, "#{proj_root}", "/root", {:ignore => ".git/hooks/pre-commit"}
+  scp_to host, "#{proj_root}", "/root" #, {:ignore => "pre-commit"}
 
   # bootstrap!
   on host, "cd /root/r10k-control && ./bootstrap.sh"

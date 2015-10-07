@@ -10,6 +10,7 @@ HOSTS:
     image: "geoffwilliams/pe2015-2-1_centos-7_aio-master_public:v1"
 #    dockerfile: "./spec/Dockerfile"
     hypervisor : "docker"
+    docker_preserve_image: true
 CONFIG:
   log_level: "debug"
   masterless: true
