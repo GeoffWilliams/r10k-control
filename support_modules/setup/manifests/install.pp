@@ -33,6 +33,7 @@ class setup::install {
     $hieradata_source = "${pwd}/integration_test/hieradata/common.yaml"
   } else {
     $hieradata_source = "${pwd}/hieradata/common.yaml"
+  }
 
   file { $hierafile:
     ensure => file,
