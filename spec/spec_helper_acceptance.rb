@@ -8,7 +8,7 @@ proj_root = File.expand_path(File.join(File.dirname(__FILE__), '..'))
 hosts.each do |host|
   # external fact to indicate we are running beaker - gets picked up during 
   # bootstrap puppet code
-  on host, "mkdir -p /etc/facter/facts.d && echo is_beaker=true > beaker.txt"
+  on host, "mkdir -p /etc/facter/facts.d && echo 'is_beaker=true' > /etc/facter/facts.d/beaker.txt"
 
   scp_to host, "#{proj_root}", "/root", {:ignore => ".git/hooks/pre-commit"}
 
