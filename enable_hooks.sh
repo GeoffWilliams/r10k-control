@@ -5,5 +5,5 @@
 # script once code has been checked out to prevent committing code with syntax
 # errors
 for FILE in hooks/* ; do
-  ln -s $FILE .git/$FILE
+  cp $FILE .git/$FILE
 done
