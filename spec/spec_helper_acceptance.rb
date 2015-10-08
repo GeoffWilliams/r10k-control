@@ -12,7 +12,8 @@ hosts.each do |host|
 
   scp_to host, "#{proj_root}", "/root" #, {:ignore => "pre-commit"}
 
-  # bootstrap!
+  # bootstrap!  Note that initial 'test' hieradata is selected in
   on host, "cd /root/r10k-control && ./bootstrap.sh"
   on host, "puppet module install --force geoffwilliams-puppet_enterprise"
+
 end

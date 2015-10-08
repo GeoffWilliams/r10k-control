@@ -51,4 +51,14 @@ class setup::cleanup {
   file { "${moddir}/geoffwilliams-dirtools":
     ensure => absent,
   }
+
+  # For beaker test environments, restore the test hieradata
+  if $::is_beaker {
+    $hieradata_source = "${pwd}/integration_test/hieradata/common.yaml"
+    file { $hierafile:
+      ensure => file,
+      source => $hieradata_source,
+    } 
+  }
+
 }
