@@ -57,6 +57,7 @@ class profiles::puppet::params {
   $puppetconf             = "${::settings::confdir}/puppet.conf"
   $generate_r10k_mco_cert = true
   $autosign_script        = "/usr/local/bin/autosign.sh"
+  $data_binding_terminus  = "hiera"
 
   $db_backup_dir          = "/tmp"
   $db_backup_hour         = 5
