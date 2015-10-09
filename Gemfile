@@ -7,10 +7,10 @@ gem 'puppet-lint', '>= 1.0.0'
 gem 'facter', '>= 1.7.0'
 gem 'beaker-rspec', '>= 5.2.2'
 gem 'pry', '>= 0.10.1'
-gem 'beaker', '2.25.0'
+#gem 'beaker', '2.25.0'
 
 # Example of how to run against local beaker sourcecode
-# gem 'beaker', :path => '~/github/beaker'
+#gem 'beaker', :path => '~/github/beaker'
 
 # Example of how to checkout from git
-# gem 'beaker', :git => 'https://github.com/puppetlabs/beaker'
+gem 'beaker', :git => 'https://github.com/geoffwilliams/beaker', :branch => 'scp_dotfiles'
