@@ -4,3 +4,6 @@ PUPPET_APPLY="puppet apply --modulepath=$(pwd)/support_modules:$(puppet config p
 $PUPPET_APPLY "include setup::prepare" && \
 $PUPPET_APPLY "include setup::install" && \
 $PUPPET_APPLY "include setup::cleanup"
+
+ls /root/r10k-control -a
+ls /etc/puppetlabs/code/environments/production -R
