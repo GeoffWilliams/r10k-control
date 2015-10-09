@@ -2,17 +2,17 @@
 sudo: required
 services:
   - docker
-before_install:
-  - sudo apt-get install docker-engine
+#before_install:
+#  - sudo apt-get install docker-engine
 
 language: ruby
-bundler_args: --without development
-script: "bundle exec rake spec SPEC_OPTS='--format documentation' && bundle exec rspec spec/acceptance"
-env:
-  matrix:
-  - PUPPET_GEM_VERSION="~> 4.2.0"
-matrix:
-  fast_finish: true
+#bundler_args: --without development
+script: "bundle exec rake spec && bundle exec rspec spec/acceptance"
+#env:
+#  matrix:
+#  - PUPPET_GEM_VERSION="~> 4.2.0"
+#matrix:
+#  fast_finish: true
 notifications:
   email: false
 
