@@ -1,10 +1,12 @@
 ---
 sudo: required
-services:
-  - docker
+#services:
+#  - docker
 before_install:
-  - eval "$(docker-machine env default)"
 #  - sudo apt-get install docker-engine
+#  - sudo apt-get upgrade docker-engine
+  - sudo bash -c "curl -sSL https://get.docker.com/ | sh"
+
 
 language: ruby
 #bundler_args: --without development
