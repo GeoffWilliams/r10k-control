@@ -23,7 +23,7 @@ service { $mco_service:
 }
 
 class { "profiles::puppet::r10k":}
-exec { "r10k deploy environment -pv": 
+exec { "r10k deploy environment -p --verbose debug": 
   path => [
     "/opt/puppetlabs/bin",
     "/opt/puppet/bin/",
@@ -31,5 +31,6 @@ exec { "r10k deploy environment -pv":
     "/usr/bin",
     "/bin",
   ],
+  logoutput => true,
 }
 
