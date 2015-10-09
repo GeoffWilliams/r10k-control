@@ -13,4 +13,4 @@ gem 'pry', '>= 0.10.1'
 #gem 'beaker', :path => '~/github/beaker'
 
 # Example of how to checkout from git
-gem 'beaker', :git => 'https://github.com/geoffwilliams/beaker', :ref => 'scp_dotfiles'
+gem 'beaker', :git => 'https://github.com/geoffwilliams/beaker', :ref => 'scp_dotfiles_debug'

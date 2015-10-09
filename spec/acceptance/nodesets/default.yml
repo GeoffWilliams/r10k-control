@@ -9,6 +9,6 @@ HOSTS:
     hypervisor : "docker"
     docker_preserve_image: true
 CONFIG:
-  log_level: "debug"
+  log_level: "trace"
   masterless: true
 
