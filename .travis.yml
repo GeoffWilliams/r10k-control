@@ -5,6 +5,7 @@ services:
 before_install:
 #  - sudo apt-get install docker-engine
 #  - sudo apt-get upgrade docker-engine
+  - git fetch --unshallow
   - sudo bash -c "curl -sSL https://get.docker.com/ | sh"
 
 
