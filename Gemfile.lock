@@ -1,7 +1,7 @@
 GIT
   remote: https://github.com/geoffwilliams/beaker
   revision: 31e32fbbe2030c343d261c137db1a9fc88cfb967
-  branch: scp_dotfiles
+  ref: scp_dotfiles
   specs:
     beaker (2.25.0)
       aws-sdk (~> 1.57)
