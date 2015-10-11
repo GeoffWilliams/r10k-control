@@ -6,8 +6,10 @@ class profiles::base(
   include profiles::motd 
   include profiles::software
 
-  class { "ntp":
-    disable_monitor => true,
-    servers         => $ntp_servers,
+  if $virtual != "docker" {
+    class { "ntp":
+      disable_monitor => true,
+      servers         => $ntp_servers,
+    }
   }
 }
