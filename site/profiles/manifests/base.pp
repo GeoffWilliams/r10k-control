@@ -5,6 +5,7 @@ class profiles::base(
   include profiles::systemd
   include profiles::motd 
   include profiles::software
+  include profiles::vim
 
   if $virtual != "docker" {
     class { "ntp":

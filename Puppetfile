@@ -11,3 +11,4 @@ mod "hiera",
 mod "mcollective_user",
   :git => "https://github.com/GeoffWilliams/geoffwilliams-mcollective_user"
 mod "saz/motd", "2.3.1"
+mod "saz/vim", "2.4.0"
