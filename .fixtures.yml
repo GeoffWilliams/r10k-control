@@ -15,6 +15,9 @@ fixtures:
     motd:
       repo: "saz/motd"
       ref: "2.3.1"
+    vim:
+      repo: "saz/vim"
+      ref: "2.4.0"
   repositories:
     hiera:
       repo: "https://github.com/GeoffWilliams/puppet-hiera"
