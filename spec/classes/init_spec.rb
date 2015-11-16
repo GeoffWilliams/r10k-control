@@ -4,19 +4,19 @@ require 'find'
 # preconditions indexed by class name.  These will automatically be loaded 
 # during testing
 $preconditions = {
-  "profiles::puppet::agent" => "class { 'profiles::systemd': }",
-  "profiles::puppet::master" => "class { 'profiles::systemd': } service { 'pe-puppetserver': }",
-  "profiles::puppet::policy_based_autosign" => "class { 'profiles::systemd': } class { 'profiles::puppet::master': } service { 'pe-puppetserver': }",
-  "roles::puppet::master" => "class { 'profiles::systemd': } service { 'pe-puppetserver': }"
+  "r_profile::puppet::agent" => "class { 'r_profile::systemd': }",
+  "r_profile::puppet::master" => "class { 'r_profile::systemd': } service { 'pe-puppetserver': }",
+  "r_profile::puppet::policy_based_autosign" => "class { 'r_profile::systemd': } class { 'r_profile::puppet::master': } service { 'pe-puppetserver': }",
+  "role::puppet::master" => "class { 'r_profile::systemd': } service { 'pe-puppetserver': }"
 }
 
 # parameters indexed by class name.  These will automatically be loaded during
 # testing
 $params = {
-  "profiles::puppet::r10k" => {
+  "r_profile::puppet::r10k" => {
     :remote => "https://github.com/GeoffWilliams/r10k-control/"
   },
-  "profiles::puppet::r10k_mcollective_client" => {
+  "r_profile::puppet::r10k_mcollective_client" => {
     :user_name        => "r10k",
     :activemq_brokers => "pe-puppet.localdomain"
   }
@@ -29,6 +29,9 @@ def test_class(classname)
         :osfamily               => "RedHat",
         :operatingsystemrelease => "7",
         :pe_server_version      => "2015.2.0",
+        :os                     => {
+          :family => "RedHat",
+        },
       }
     end
 
@@ -65,7 +68,7 @@ end
 
 
 # test all profiles
-profile_classes = classnames("site/profiles")
+profile_classes = classnames("site/profile")
 if profile_classes then
   profile_classes.each do |profile_class|
     test_class(profile_class)
@@ -73,7 +76,7 @@ if profile_classes then
 end
 
 # test all roles
-role_classes = classnames("site/roles")
+role_classes = classnames("site/role")
 if role_classes then
   role_classes.each do |role_class|
     test_class(role_class)

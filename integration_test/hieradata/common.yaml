@@ -19,8 +19,8 @@ puppet_enterprise::profile::console::delayed_job_workers: 1
 puppet_enterprise::profile::database::shared_buffers: '4MB' 
 # =====[ end PE memory tuning ]=====
 
-#profiles::puppet::r10k::remote: "https://github.com/GeoffWilliams/r10k-control"
-profiles::puppet::r10k::remote: "/root/r10k-control"
-profiles::puppet::r10k::mco_user: "deploy"
-profiles::puppet::r10k_mcollective_client::activemq_brokers:
+#r_profile::puppet::r10k::remote: "https://github.com/GeoffWilliams/r10k-control"
+r_profile::puppet::r10k::remote: "/root/r10k-control"
+r_profile::puppet::r10k::mco_user: "deploy"
+r_profile::puppet::r10k_mcollective_client::activemq_brokers:
   - "pe-puppet.localdomain"
