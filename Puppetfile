@@ -12,5 +12,7 @@ mod "mcollective_user",
   :git => "https://github.com/GeoffWilliams/geoffwilliams-mcollective_user"
 mod "saz/motd", "2.3.1"
 mod "saz/vim", "2.4.0"
+mod "saz/sudo", "3.1.0"
 mod "r_profile",
   :git => "https://github.com/GeoffWilliams/r_profile"
+mod "geoffwilliams/bash_user_skel", "0.1.0"
