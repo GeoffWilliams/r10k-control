@@ -10,8 +10,8 @@
 
 # Must install real version of git before running r10k as otherwise it will
 # attempt to use a weird ruby version that doesn't seem to support proxies
-include profiles::puppet::params
-$mco_service = $profiles::puppet::params::mco_service
+include r_profile::puppet::params
+$mco_service = $r_profile::puppet::params::mco_service
 
 package { "git":
   ensure => present,
@@ -22,7 +22,7 @@ service { $mco_service:
   enable => true,
 }
 
-class { "profiles::puppet::r10k":}
+class { "r_profile::puppet::r10k":}
 exec { "r10k deploy environment -p --verbose debug": 
   path => [
     "/opt/puppetlabs/bin",

@@ -15,14 +15,14 @@ class setup::install {
 
   # setup local roles + profiles before running r10k so that we can configure
   # for proxies, etc
-  file { "${moddir}/profiles":
+  file { "${moddir}/profile":
     ensure => link,
-    target => "${pwd}/site/profiles",
+    target => "${pwd}/site/profile",
   }
 
-  file { "${moddir}/roles": 
+  file { "${moddir}/role": 
     ensure => link,
-    target => "${pwd}/site/roles",
+    target => "${pwd}/site/role",
   }
 
   file { $hieradir:

@@ -23,33 +23,37 @@ class setup::cleanup {
   # bootstrapped onto the system or puppet wont run at all
   file { "/usr/local/bin/puppet_git_revision.sh":
     ensure  => file,
-    content => template("profiles/puppet_git_revision.sh.erb"),
+    content => template("r_profile/puppet_git_revision.sh.erb"),
     mode    => "0755",
   }
 
   # Initial R10K run
-  exec { "puppet apply ${pwd}/site/profiles/examples/puppet/r10k_bootstrap.pp": }
+  exec { "puppet apply ${pwd}/site/profile/examples/puppet/r10k_bootstrap.pp": }
 
 
   # remove symlinks
-  file { "${moddir}/profiles":
+  file { "${moddir}/profile":
     ensure => absent,
   }
 
-  file { "${moddir}/roles":
+  file { "${moddir}/role":
     ensure => absent,
   }
 
   # remove puppet module install'ed tools
-  file { "${moddir}/zack-r10k":
+  file { "${moddir}/r10k":
     ensure => absent,
   }
 
-  file { "${moddir}/puppetlabs-stdlib":
+  file { "${moddir}/stdlib":
     ensure => absent,
   }
 
-  file { "${moddir}/geoffwilliams-dirtools":
+  file { "${moddir}/dirtools":
+    ensure => absent,
+  }
+
+  file { "${moddir}/r_profile":
     ensure => absent,
   }
 
