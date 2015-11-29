@@ -17,3 +17,4 @@ mod "r_profile",
   :git => "https://github.com/GeoffWilliams/r_profile"
 mod "geoffwilliams/bash_user_skel", "0.1.0"
 mod "jfryman/nginx", "0.2.7"
+mod "puppetlabs/apache", "1.7.0"
