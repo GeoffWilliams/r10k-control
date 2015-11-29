@@ -4,10 +4,7 @@
 A basic R10K control repository including:
 * Production branch (master is deleted)
 * Local roles and profiles site directory
-* Hiera hierachy configured
-* hiera-eyaml as drop-in replacement for yaml
-* Puppetfile with a couple of forge modules
-* zack/r10k forge module used to setup R10K
+* Access to ready profiles [r_profile](https://forge.puppetlabs.com/geoffwilliams/r_profile)
 
 # Requirements
 * Puppet Enterprise 2015.02
@@ -59,13 +56,13 @@ If you wish to install in one hit using the `puppet-enterprise-installer` script
 * Fork/clone the git repository to your corporate server, then update the common.yaml file to reference it.  Ensure git command is setup with working ssh authentication, proxies, etc
 
 ## Proxy support
-To enable git to support proxy servers, populate the `profiles::puppet::master::proxy` key in hiera, eg: 
+To enable git to support proxy servers, populate the `r_profile::puppet::master::proxy` key in hiera, eg: 
 ```
-profiles::puppet::master::proxy: "http://proxy.mycompany.com:8080"
+r_profile::puppet::master::proxy: "http://proxy.mycompany.com:8080"
 ```
 
 # Post-install
-Once r10k has been run once, you should classify your master with `roles::puppet::master` and run puppet to ensure the hiera hierarchy is configured correctly, along with `hiera-eyaml`.
+Once r10k has been run once, you should classify your master with `role::puppet::master` and run puppet to ensure the hiera hierarchy is configured correctly, along with `hiera-eyaml`.
 
 You can then start adding roles and profiles to your own forked repository and classify agent nodes with them.
 

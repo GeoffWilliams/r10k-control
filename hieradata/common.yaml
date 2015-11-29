@@ -2,38 +2,38 @@
 ---
 
 # git directory to checkout the control repository to
-profiles::puppet::r10k::remote: "https://github.com/GeoffWilliams/r10k-control"
+r_profile::puppet::r10k::remote: "https://github.com/GeoffWilliams/r10k-control"
 
 # proxy server to use for all networking, you may include username/password
 # information in the usual http://user:host@... notation but note that this
 # will not be supported in all areas of puppet, notably anything running 
 # inside JRuby such as the `puppetserver gem` command  or the `pe_repo` module
-# profiles::puppet::proxy: "http://proxy.megacorp.com:8080"
+# r_profile::puppet::proxy: "http://proxy.megacorp.com:8080"
 
 # Example of how to enable daily database backups
-# profiles::puppet::master::db_backup_ensure: "present"
+# r_profile::puppet::master::db_backup_ensure: "present"
 
 # Example of how to enable policy based autosigning
-# profiles::puppet::master::policy_based_autosign_ensure: "present"
-# profiles::puppet::master::autosign_secret: "topsecret"
+# r_profile::puppet::master::policy_based_autosign_ensure: "present"
+# r_profile::puppet::master::autosign_secret: "topsecret"
 
 # Example of how to enable the mcollective R10K publisher
 
 # Install the MCO plugin when a master declares roles::puppet::master ?
-# profiles::puppet::r10k::mco_plugin: true
+# r_profile::puppet::r10k::mco_plugin: true
 
 # Name of MCollective user to register.  Note that this refers to both the
 # real system user and the mcollective user.  This entry is referenced in:
 # *  site/profiles/manifests/puppet/r10k.pp
 # *  site/profiles/manifests/puppet/r10k_client.pp
-# profiles::puppet::r10k::mco_user: "git"
+# r_profile::puppet::r10k::mco_user: "git"
 
 # Home directory for user allowed MCollective access.  Only needs to be 
 # specified if it isn't under /home/$username
-# profiles::puppet::r10k_mcollective_client::user_home: "/var/lib/git"
+# r_profile::puppet::r10k_mcollective_client::user_home: "/var/lib/git"
 
 # MCollective broker to publish client commands to.  In a monolithic puppet
 # installation this is the address of your puppet master (NOTE:  must be an
 # an array).
-# profiles::puppet::r10k_mcollective_client::activemq_brokers: 
+# r_profile::puppet::r10k_mcollective_client::activemq_brokers: 
 #   - "pe-puppet.localdomain"

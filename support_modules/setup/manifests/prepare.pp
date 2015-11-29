@@ -22,5 +22,6 @@ class setup::prepare {
   exec { "${pmi} zack-r10k":}
   exec { "${pmi} puppetlabs-stdlib":}
   exec { "${pmi} geoffwilliams-dirtools":}
+  exec { "${pmi} geoffwilliams-r_profile":}
 }
 

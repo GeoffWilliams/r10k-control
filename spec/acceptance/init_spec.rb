@@ -45,14 +45,14 @@ def classnames(dir)
 end
 
 # test all roles - remember this scan is done on THIS computer not the beaker instance!
-role_classes = classnames("site/roles")
+role_classes = classnames("site/role")
 if role_classes then
   role_classes.each do |role_class|
     test_class(role_class)
   end
 end
 
-profile_classes = classnames("site/roles")
+profile_classes = classnames("site/profile")
 if profile_classes then
   profile_classes.each do |profile_class|
     test_class(profile_class)

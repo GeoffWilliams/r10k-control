@@ -18,13 +18,26 @@ fixtures:
     vim:
       repo: "saz/vim"
       ref: "2.4.0"
+    sudo:
+      repo: "saz/sudo"
+      ref: "3.1.0"
+    bash_user_skel:
+      repo: "geoffwilliams/bash_user_skel"
+      ref: "0.1.0"
+    pe_repo:
+      repo: "geoffwilliams/pe_repo"
+      ref: "0.1.0"
+    puppet_enterprise:
+      repo: "geoffwilliams/puppet_enterprise"
+      ref:  "0.4.3"
   repositories:
     hiera:
       repo: "https://github.com/GeoffWilliams/puppet-hiera"
       branch: "double_gem"
     mcollective_user: "https://github.com/GeoffWilliams/geoffwilliams-mcollective_user"
     puppet_enterprise: "https://github.com/GeoffWilliams/geoffwilliams-puppet_enterprise"
+    r_profile: "https://github.com/GeoffWilliams/r_profile"
   symlinks:
-    roles: "#{source_dir}/site/roles"
-    profiles: "#{source_dir}/site/profiles"
+    role: "#{source_dir}/site/role"
+    profile: "#{source_dir}/site/profile"
 
