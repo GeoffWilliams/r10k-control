@@ -1,0 +1,49 @@
+HOSTS:
+  centos6a:
+    roles:
+      - agent
+    type: aio
+    platform: el-6-64
+    box: puppetlabs/centos-6.6-64-puppet
+    box_url: https://atlas.hashicorp.com/puppetlabs/boxes/centos-6.6-64-puppet
+    hypervisor: vagrant_virtualbox
+  centos7b:
+    roles:
+      - agent
+    type: aio
+    platform: el-7-64
+    box: puppetlabs/centos-7.0-64-puppet
+    box_url: https://atlas.hashicorp.com/puppetlabs/boxes/centos-7.0-64-puppet
+    hypervisor: vagrant_virtualbox
+  server2012r2:
+    roles:
+      - agent
+    type: aio
+    platform: windows-2012-64-puppet
+    box: windows-server-2012r2-puppet
+    box_url: /Users/dylanratcliffe/vagrantboxtest/windows-server-2012r2-puppet.box
+    hypervisor: vagrant_virtualbox
+  server2008r2:
+    roles:
+      - agent
+    type: aio
+    platform: windows-2008-64-puppet
+    box: windows-server-2008r2-puppet
+    box_url: /Users/dylanratcliffe/vagrantboxtest/windows-server-2012r2-puppet.box
+    hypervisor: vagrant_virtualbox
+  ubuntu1204:
+    roles:
+      - agent
+    type: aio
+    platform: ubuntu-12.04-32
+    box: puppetlabs/ubuntu-12.04-32-puppet
+    box_url: https://atlas.hashicorp.com/puppetlabs/boxes/ubuntu-12.04-32-puppet
+    hypervisor: vagrant_virtualbox
+  debian78:
+    roles:
+      - agent
+    type: aio
+    platform: debian-7.8-64
+    box: puppetlabs/debian-7.8-64-puppet
+    box_url: https://atlas.hashicorp.com/puppetlabs/boxes/debian-7.8-64-puppet
+    hypervisor: vagrant_virtualbox

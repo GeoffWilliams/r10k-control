@@ -1,0 +1,47 @@
+classes:
+  - 'role::puppetmaster'
+  - 'role::dbserver'
+
+nodes:
+  - centos6a
+  - centos7b
+  - server2012r2
+  - server2008r2
+  - ubuntu1204
+  - debian78
+
+node_groups:
+  centos_servers:
+    - centos6a
+    - centos7b
+  windows_nodes:
+    - server2012r2
+    - server2008r2
+  non_windows:
+    include: 'all_nodes'
+    exclude: 'windows_nodes'
+
+class_groups:
+  databse_classes:
+    - 'role::dbserver'
+
+
+test_matrix:
+  - non_windows:
+      classes: 'all_classes'
+      tests: 'spec'
+  - centos_servers:
+      classes: 'all_classes'
+      tests: 'all_tests'
+  - debian78:
+      classes: 'all_classes'
+      tests: 'all_tests'
+  - debian78:
+      classes: 'role::puppetmaster'
+      tests: 'acceptance'
+      options:
+        runs_before_idempotency: 3
+#  - windows_nodes:
+#      classes: 'role::puppetmaster'
+#      tests: 'acceptance'
+

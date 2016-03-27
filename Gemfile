@@ -14,3 +14,5 @@ gem 'pry', '>= 0.10.1'
 
 # Example of how to checkout from git
 gem 'beaker', :git => 'https://github.com/geoffwilliams/beaker', :ref => 'dotfile_find_fix'
+
+gem 'controlrepo', :path => "~/github/controlrepo_gem"
