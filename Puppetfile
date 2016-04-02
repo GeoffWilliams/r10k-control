@@ -19,6 +19,4 @@ mod "jfryman/nginx", "0.3.0"
 mod "puppetlabs/apache", "1.8.1"
 mod "puppetlabs/concat", "2.1.0"
 mod "puppetlabs/apt", "2.2.2"
-mod "pe_puppetserver_gem", 
-  :git => "https://github.com/puppetlabs/puppetlabs-pe_puppetserver_gem",
-  :ref => "2015x_support"
+mod "puppetserver_gem", "0.2.0" 
