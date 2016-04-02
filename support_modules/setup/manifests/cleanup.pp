@@ -30,32 +30,8 @@ class setup::cleanup {
   # Initial R10K run
   exec { "puppet apply ${pwd}/site/profile/examples/puppet/r10k_bootstrap.pp": }
 
-
-  # remove symlinks
-  file { "${moddir}/profile":
-    ensure => absent,
-  }
-
-  file { "${moddir}/role":
-    ensure => absent,
-  }
-
-  # remove puppet module install'ed tools
-  file { "${moddir}/r10k":
-    ensure => absent,
-  }
-
-  file { "${moddir}/stdlib":
-    ensure => absent,
-  }
-
-  file { "${moddir}/dirtools":
-    ensure => absent,
-  }
-
-  file { "${moddir}/r_profile":
-    ensure => absent,
-  }
+  # remove all global modules to avoid namespace pollution once the system is up
+  exec { "rm -rf ${moddir}/*": }
 
   # For beaker test environments, restore the test hieradata
   if $::is_beaker {
