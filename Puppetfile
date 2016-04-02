@@ -5,7 +5,8 @@ mod "puppetlabs/stdlib" , "4.11.0"
 mod "puppetlabs/ntp", "4.1.2"
 mod "puppetlabs/inifile", "1.5.0"
 mod "zack/r10k", "3.2.0"
-mod "hunner/hiera", "2.0.1"
+mod "hiera", 
+  :git => "https://github.com/hunner/puppet-hiera"
 mod "mcollective_user",
   :git => "https://github.com/GeoffWilliams/geoffwilliams-mcollective_user"
 mod "saz/motd", "2.3.1"
