@@ -25,4 +25,5 @@ mod "puppet/iis", "2.0.2"
 mod "puppetlabs/acl", "1.1.2"
 mod "puppetlabs/registry", "1.1.3"
 mod "puppetlabs/chocolatey", "0.8.0"
-
+mod "badgerious/windows_env", "2.2.2"
+mod "puppetlabs/powershell", "2.0.2"
