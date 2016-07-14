@@ -7,6 +7,6 @@ class role::fact_classified {
   if $::role {
     include $::role
   } else {
-    include profile::base
+    include r_profile::base
   }
 }
