@@ -28,4 +28,4 @@ mod "puppetlabs/chocolatey", "0.8.0"
 mod "badgerious/windows_env", "2.2.2"
 mod "puppetlabs/powershell", "2.0.2"
 mod "puppetlabs/reboot", "1.2.1"
-
+mod "puppet/windowsfeature", "2.0.0"
