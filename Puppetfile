@@ -24,3 +24,5 @@ mod "geoffwilliams/lastrun_face", "0.2.0"
 mod "puppet/iis", "2.0.2"
 mod "puppetlabs/acl", "1.1.2"
 mod "puppetlabs/registry", "1.1.3"
+mod "puppetlabs/chocolatey", "0.8.0"
+
