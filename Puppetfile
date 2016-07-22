@@ -30,3 +30,5 @@ mod "puppetlabs/powershell", "2.0.2"
 mod "puppetlabs/reboot", "1.2.1"
 mod "puppet/windowsfeature", "2.0.0"
 mod "puppetlabs/dsc", "1.0.1"
+mod "rtyler/jenkins", "1.6.1"
+ 
