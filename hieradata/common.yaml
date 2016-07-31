@@ -37,3 +37,8 @@ r_profile::puppet::r10k::remote: "https://github.com/GeoffWilliams/r10k-control"
 # an array).
 # r_profile::puppet::r10k_mcollective_client::activemq_brokers: 
 #   - "pe-puppet.localdomain"
+
+# software to install on all platforms (windows via choco)
+r_profile::software::packages:
+  - "wget"
+
