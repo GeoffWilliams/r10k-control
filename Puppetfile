@@ -34,5 +34,6 @@ mod "rtyler/jenkins", "1.6.1"
 mod "puppetlabs/java", "1.6.0"
 mod "hunner/wordpress", "1.0.0"
 mod "puppetlabs/mysql", "3.8.0"
+mod "puppetlabs/vcsrepo", "1.3.2"
 mod "sshkeys",
   :git => "https://github.com/GeoffWilliams/sshkeys"
