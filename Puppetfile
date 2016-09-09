@@ -42,3 +42,5 @@ mod "sshkeys",
 mod "attachmentgenie/ssh", "1.6.0"
 mod "nagios",
   :git => "https://github.com/GeoffWilliams/puppet-nagios"
+mod "stahnma/epel", "1.2.2"
+  
