@@ -13,9 +13,9 @@ r_profile::puppet::r10k::remote: "https://github.com/GeoffWilliams/r10k-control"
 # Example of how to enable daily database backups
 # r_profile::puppet::master::db_backup_ensure: "present"
 
-# Example of how to enable policy based autosigning
-# r_profile::puppet::master::policy_based_autosign_ensure: "present"
-# r_profile::puppet::master::autosign_secret: "topsecret"
+# Enable policy based autosigning
+r_profile::puppet::master::policy_based_autosign_ensure: "present"
+r_profile::puppet::master::autosign_secret: "topsecret"
 
 # Example of how to enable the mcollective R10K publisher
 
