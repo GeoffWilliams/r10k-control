@@ -6,5 +6,5 @@ if $::kernel == 'windows' {
 }
 
 node default {
-  include role::fact_classified
+  include r_role::trusted_fact_classified
 }
