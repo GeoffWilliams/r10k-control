@@ -40,7 +40,9 @@ mod "puppetlabs/vcsrepo", "1.3.2"
 mod "sshkeys",
   :git => "https://github.com/GeoffWilliams/sshkeys"
 mod "attachmentgenie/ssh", "1.6.0"
+
+# nagios + deps
 mod "nagios",
   :git => "https://github.com/GeoffWilliams/puppet-nagios"
 mod "stahnma/epel", "1.2.2"
-  
+mod "jamtur01/httpauth", "0.0.3"  
