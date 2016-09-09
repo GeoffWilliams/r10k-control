@@ -14,6 +14,8 @@ mod "saz/vim", "2.4.0"
 mod "saz/sudo", "3.1.0"
 mod "r_profile",
   :git => "https://github.com/GeoffWilliams/r_profile"
+mod "r_role",
+  :git => "https://github.com/GeoffWilliams/r_role"
 mod "geoffwilliams/bash_user_skel", "0.1.2"
 mod "jfryman/nginx", "0.3.0"
 mod "puppetlabs/apache", "1.10.0"
