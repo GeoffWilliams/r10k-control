@@ -26,7 +26,7 @@ mod "geoffwilliams/lastrun_face", "0.2.0"
 mod "puppet/iis", "2.0.2"
 mod "puppetlabs/acl", "1.1.2"
 mod "puppetlabs/registry", "1.1.3"
-mod "puppetlabs/chocolatey", "0.8.0"
+mod "chocolatey/chocolatey", "1.2.6"
 mod "badgerious/windows_env", "2.2.2"
 mod "puppetlabs/powershell", "2.0.2"
 mod "puppetlabs/reboot", "1.2.1"
@@ -45,4 +45,9 @@ mod "attachmentgenie/ssh", "1.6.0"
 mod "nagios",
   :git => "https://github.com/GeoffWilliams/puppet-nagios"
 mod "stahnma/epel", "1.2.2"
-mod "jamtur01/httpauth", "0.0.3"  
+mod "jamtur01/httpauth", "0.0.3"
+
+# tomcat
+mod 'puppetlabs/tomcat', '1.5.0'
+mod 'puppet/staging', '2.0.1'
+mod 'puppet/archive', '1.1.2'
