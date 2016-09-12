@@ -51,3 +51,6 @@ mod "jamtur01/httpauth", "0.0.3"
 mod 'puppetlabs/tomcat', '1.5.0'
 mod 'puppet/staging', '2.0.1'
 mod 'puppet/archive', '1.1.2'
+
+# haproxy
+mod 'puppetlabs/haproxy', '1.5.0'
