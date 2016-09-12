@@ -41,4 +41,6 @@ r_profile::puppet::master::autosign_secret: "topsecret"
 # software to install on all platforms (windows via choco)
 r_profile::software::packages:
   - "wget"
+  - "unzip"
+  - "links"
 
