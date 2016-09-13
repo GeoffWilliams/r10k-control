@@ -54,3 +54,5 @@ mod 'puppet/archive', '1.1.2'
 
 # haproxy
 mod 'puppetlabs/haproxy', '1.5.0'
+mod 'dalen/puppetdbquery', '2.1.1'
+
