@@ -56,3 +56,8 @@ mod 'puppet/archive', '1.1.2'
 mod 'puppetlabs/haproxy', '1.5.0'
 mod 'dalen/puppetdbquery', '2.1.1'
 
+# source address 
+mod 'source_ipaddress',
+  :git => 'https://github.com/GeoffWilliams/puppet-source_ipaddress'
+
+
