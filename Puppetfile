@@ -60,4 +60,6 @@ mod 'dalen/puppetdbquery', '2.1.1'
 mod 'source_ipaddress',
   :git => 'https://github.com/GeoffWilliams/puppet-source_ipaddress'
 
-
+# psquared (git server for PE)
+mod 'psquared',
+  :git => 'https://github.com/GeoffWilliams/psquared'
