@@ -63,3 +63,6 @@ mod 'source_ipaddress',
 # psquared (git server for PE)
 mod 'psquared',
   :git => 'https://github.com/GeoffWilliams/psquared'
+
+# classifier
+mod 'WhatsARanjit/node_manager', '0.2.1'
