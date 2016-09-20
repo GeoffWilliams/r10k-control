@@ -1,5 +1,4 @@
 # site.pp
-$uhoh=testfunc()
 
 if $::kernel == 'windows' {
   Package { provider => chocolatey, }
