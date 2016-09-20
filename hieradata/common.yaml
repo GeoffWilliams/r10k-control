@@ -43,4 +43,5 @@ r_profile::software::packages:
   - "wget"
   - "unzip"
   - "links"
+  - "git"
 
