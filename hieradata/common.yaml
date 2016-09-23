@@ -42,6 +42,5 @@ r_profile::puppet::master::autosign_secret: "topsecret"
 r_profile::software::packages:
   - "wget"
   - "unzip"
-  - "links"
   - "git"
 
