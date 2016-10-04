@@ -66,3 +66,6 @@ mod 'psquared',
 
 # classifier
 mod 'WhatsARanjit/node_manager', '0.2.1'
+
+# firewall (iptables)
+mod 'puppetlabs/firewall', '1.8.1'
