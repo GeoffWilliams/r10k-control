@@ -11,6 +11,9 @@
 # Must install real version of git before running r10k as otherwise it will
 # attempt to use a weird ruby version that doesn't seem to support proxies
 include r_profile::puppet::params
+Exec {
+  timeout => 0,
+}
 $mco_service = $r_profile::puppet::params::mco_service
 
 package { "git":
