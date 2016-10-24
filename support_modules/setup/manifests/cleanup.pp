@@ -17,6 +17,7 @@ class setup::cleanup {
       "/bin",
     ],
     logoutput => true,
+    timeout   => 0,
   }
 
   # Script to get the git revision of the current environment.  Needs to be 
