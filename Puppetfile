@@ -70,5 +70,4 @@ mod 'WhatsARanjit/node_manager', '0.2.1'
 mod 'puppetlabs/firewall', '1.8.1'
 
 # IIS (webserver + asp)
-mod 'iis',
-:git => 'https://github.com/beergeek/iis.git'
+mod 'beergeek/iis', '0.1.6'
