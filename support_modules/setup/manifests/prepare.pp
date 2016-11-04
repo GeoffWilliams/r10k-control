@@ -8,7 +8,8 @@ class setup::prepare {
       "/usr/local/bin",
       "/usr/bin",
       "/bin",
-    ]
+    ],
+    timeout => 0,
   }
 
   $codedir   = $setup::params::codedir

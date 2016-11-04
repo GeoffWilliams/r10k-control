@@ -30,12 +30,12 @@ mod "badgerious/windows_env", "2.2.2"
 mod "puppetlabs/powershell", "2.0.2"
 mod "puppetlabs/reboot", "1.2.1"
 mod "puppet/windowsfeature", "2.0.0"
-mod "puppetlabs/dsc", "1.0.1"
+mod "puppetlabs/dsc", "1.1.0"
 mod "rtyler/jenkins", "1.6.1"
 mod "puppetlabs/java", "1.6.0"
 mod "hunner/wordpress", "1.0.0"
 mod "puppetlabs/mysql", "3.8.0"
-mod "puppetlabs/vcsrepo", "1.3.2"
+mod "puppetlabs/vcsrepo", "1.4.0"
 mod "sshkeys",
   :git => "https://github.com/GeoffWilliams/sshkeys"
 mod "attachmentgenie/ssh", "1.6.0"
@@ -71,3 +71,10 @@ mod 'puppetlabs/firewall', '1.8.1'
 
 # IIS (webserver + asp)
 mod 'beergeek/iis', '0.1.6'
+
+# Puppet SQL server (PE only)
+mod 'puppetlabs-sqlserver', '1.1.4'
+
+# windows 
+mod "puppet/windows_firewall", '1.0.3'
+mod "puppetlabs/wsus_client", "1.0.2"
