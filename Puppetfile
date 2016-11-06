@@ -75,3 +75,6 @@ mod 'beergeek/iis', '0.1.6'
 # windows 
 mod "puppet/windows_firewall", '1.0.3'
 mod "puppetlabs/wsus_client", "1.0.2"
+
+# Puppet SQL server (PE only)
+#mod 'puppetlabs-sqlserver', '1.1.4'
