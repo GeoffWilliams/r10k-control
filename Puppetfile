@@ -64,7 +64,7 @@ mod 'psquared',
   :git => 'https://github.com/GeoffWilliams/psquared'
 
 # classifier
-mod 'WhatsARanjit/node_manager', '0.2.1'
+mod 'WhatsARanjit/node_manager', '0.3.1'
 
 # firewall (iptables)
 mod 'puppetlabs/firewall', '1.8.1'
