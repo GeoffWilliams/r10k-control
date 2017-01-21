@@ -11,7 +11,7 @@ r_profile::puppet::r10k::remote: "https://github.com/GeoffWilliams/r10k-control"
 # r_profile::puppet::proxy: "http://proxy.megacorp.com:8080"
 
 # Open the IP tables firewall on the master
-r_profile::puppet::master::open_firewall: true
+#r_profile::puppet::master::open_firewall: true
 
 # Enable policy based autosigning
 r_profile::puppet::master::autosign::ensure: "policy"
