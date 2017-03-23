@@ -9,9 +9,11 @@ resources { 'firewall':
   purge => true,
 }
 
-Firewall {
-  before  => Class['r_profile::fw::post'],
-  require => Class['r_profile::fw::pre'],
+if hiera('r_profile::linux::firewall::ensure', 'unmanaged') == 'managed' {
+  Firewall {
+    before  => Class['r_profile::fw::post'],
+    require => Class['r_profile::fw::pre'],
+  }
 }
 
 node default {

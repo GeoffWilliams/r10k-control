@@ -10,12 +10,12 @@ r_profile::puppet::r10k::remote: "https://github.com/GeoffWilliams/r10k-control"
 # inside JRuby such as the `puppetserver gem` command  or the `pe_repo` module
 # r_profile::puppet::proxy: "http://proxy.megacorp.com:8080"
 
-# Example of how to enable daily database backups
-# r_profile::puppet::master::db_backup_ensure: "present"
+# Open the IP tables firewall on the master
+#r_profile::puppet::master::open_firewall: true
 
 # Enable policy based autosigning
-r_profile::puppet::master::policy_based_autosign_ensure: "present"
-r_profile::puppet::master::autosign_secret: "topsecret"
+r_profile::puppet::master::autosign::ensure: "policy"
+r_profile::puppet::master::autosign::secret: "topsecret"
 
 # Example of how to enable the mcollective R10K publisher
 

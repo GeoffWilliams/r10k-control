@@ -64,7 +64,7 @@ mod 'psquared',
   :git => 'https://github.com/GeoffWilliams/psquared'
 
 # classifier
-mod 'WhatsARanjit/node_manager', '0.2.1'
+mod 'WhatsARanjit/node_manager', '0.3.1'
 
 # firewall (iptables)
 mod 'puppetlabs/firewall', '1.8.1'
@@ -75,3 +75,6 @@ mod 'beergeek/iis', '0.1.6'
 # windows 
 mod "puppet/windows_firewall", '1.0.3'
 mod "puppetlabs/wsus_client", "1.0.2"
+
+# Puppet SQL server (PE only)
+#mod 'puppetlabs-sqlserver', '1.1.4'
