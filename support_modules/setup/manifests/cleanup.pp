@@ -20,14 +20,6 @@ class setup::cleanup {
     timeout   => 0,
   }
 
-  # Script to get the git revision of the current environment.  Needs to be 
-  # bootstrapped onto the system or puppet wont run at all
-  file { "/usr/local/bin/puppet_git_revision.sh":
-    ensure  => file,
-    content => template("r_profile/puppet_git_revision.sh.erb"),
-    mode    => "0755",
-  }
-
   # Initial R10K run
   exec { "puppet apply ${pwd}/site/profile/examples/puppet/r10k_bootstrap.pp": }
 
