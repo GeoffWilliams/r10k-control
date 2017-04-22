@@ -1,7 +1,6 @@
 # Classes to be tested
 classes:
-  - role::puppet::master
-  - role::puppet::r10k_mcollective_client
+
 
 # Nodes to tests classes on, this refers to a 'factset' or 'nodeset'
 # depending on weather you are running 'spec' or 'acceptance' tests
