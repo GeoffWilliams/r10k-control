@@ -1,14 +1,9 @@
 ---
 sudo: required
-services:
-  - docker
 before_install:
   # get the full git repo or r10k breaks (travis only gives last 50 commits)
   - git fetch --unshallow
-  # upgrade docker or we get strange errors from beaker about nil objects
-  - sudo bash -c "curl -sSL https://get.docker.com/ | sh"
 language: ruby
-script: "bundle exec rake spec && bundle exec rspec spec/acceptance"
+script: "bundle install && make"
 notifications:
   email: false
-
