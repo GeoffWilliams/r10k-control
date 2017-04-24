@@ -11,7 +11,11 @@ mod "mcollective_user",
 mod "motd",
   :git => "https://github.com/geoffwilliams/puppetlabs-motd",
   :ref => "more_messages"
-mod "saz/vim", "2.5.0"
+# mod "saz/vim", "2.5.0"  https://github.com/saz/puppet-vim/issues/13
+mod 'vim',
+  :git => 'https://github.com/GeoffWilliams/puppet-vim',
+  :ref => 'fix_missing_var_error'
+
 mod "saz/sudo", "4.1.0"
 mod "geoffwilliams/r_profile", "0.11.0"
 mod "r_role",
