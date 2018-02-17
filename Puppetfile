@@ -8,9 +8,11 @@ mod "puppetlabs/inifile", "2.2.0"
 mod "geoffwilliams/motd", "2.1.1"
 mod 'saz-vim', '2.7.0'
 mod "saz/sudo", "5.0.0"
-mod "geoffwilliams/r_profile", "1.15.0"
+mod "r_profile",
+  :git => "https://github.com/DeclarativeSystems/r_profile"
+
 mod "r_role",
-  :git => "https://github.com/GeoffWilliams/r_role"
+  :git => "https://github.com/DeclarativeSystems/r_role"
 mod "geoffwilliams/bash_user_skel", "0.1.2"
 mod 'puppet-nginx', '0.10.0'
 mod "puppetlabs/apache", "2.3.1"
