@@ -44,3 +44,7 @@ r_profile::software::packages:
   - "unzip"
   - "git"
 
+
+# test to see if this breaks stuff
+puppet_enterprise::master::code_manager::forge_settings: 
+  baseurl: 'https://private-forge.mysite'
