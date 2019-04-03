@@ -1,0 +1,16 @@
+# Mock modules needed for testing
+mod 'geoffwilliams-pe_staging', '0.1.0'
+mod 'geoffwilliams-pe_repo', '0.2.0'
+mod 'geoffwilliams-puppet_enterprise', '0.7.0'
+
+# Core modules ship with the agent but aren't visible if your not using a "real" 
+# agent for testing so we must download them from forge for test purposes
+mod 'puppetlabs-host_core', '1.0.2'
+mod 'puppetlabs-mount_core', '1.0.3'
+mod 'puppetlabs-yumrepo_core', '1.0.3'
+mod 'puppetlabs-sshkeys_core', '1.0.2'
+mod 'puppetlabs-selinux_core', '1.0.2'
+mod 'puppetlabs-mailalias_core', '1.0.5'
+mod 'puppetlabs-scheduled_task', '1.0.1'
+mod 'puppetlabs-augeas_core', '1.0.4'
+mod 'puppetlabs-cron_core', '1.0.1'

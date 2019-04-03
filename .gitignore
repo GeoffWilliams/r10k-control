@@ -1,5 +1,5 @@
-*.swp
-spec/fixtures
-log
+.idea
+Puppetfile.onceover
 .onceover
-modules
+.yardoc
+.vagrant

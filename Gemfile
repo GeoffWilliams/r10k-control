@@ -1,3 +1,12 @@
 source 'https://rubygems.org'
 
-gem 'onceover'
+gem 'onceover', '3.12.4'
+gem 'onceover-codequality', '0.5.0'
+gem 'onceover-lookup', '0.1.1'
+gem 'onceover-metrics', '0.1.0'
+gem 'rugged', '0.28.1'
+gem 'r10k', '3.1.1'
+gem 'puppet', '6.3.0'
+gem 'puppet-strings', '2.1.0'
+gem 'pry'
+gem 'hiera-eyaml', '3.0.0'
